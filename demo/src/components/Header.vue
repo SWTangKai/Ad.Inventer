@@ -4,7 +4,7 @@
     </div> -->
     <div class="header-item">
       
-      <img src="../assets/logo-word.png" style="height: 100%; margin: auto"/>
+      <img src="../assets/logo-bold.png" style="height: 70%; margin: auto"/>
     </div>
     <!-- <div class="header-item"></div> -->
   </div>

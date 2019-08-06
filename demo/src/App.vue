@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <a-layout id="components-layout-demo-top" class="layout">
-      <a-layout-header style="background: #f0f2f5; margin-top: 20px"><Header/></a-layout-header>
+      <a-layout-header class="layout-header"><Header/></a-layout-header>
       <a-layout-content><Content /></a-layout-content>
       <a-layout-footer><Footer/></a-layout-footer>
     </a-layout>
@@ -39,6 +39,12 @@ export default {
 
 #components-layout-demo-top{
   height: 100%;
+}
+
+.layout-header{
+    background: rgb(240, 242, 245);
+    margin-top: 30px;
+    margin-bottom: 7px;
 }
 
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div class="content">
-    <div>
-      <div class="aspect" style="margin-botton: 5px;">
+    <div class="control-aspect">
+      <div class="aspect">
         <a-radio-group v-model="aspect" size="large">
           <a-radio-button value="a">外观</a-radio-button>
           <a-radio-button value="b">材质</a-radio-button>
@@ -9,10 +9,10 @@
         </a-radio-group>
       </div>
     </div>
-    <div>
+    <div class="control-search">
       <a-select 
         mode="tags"
-        style="width: 80%; padding-top: 10px; padding-botton: 5px"
+        style="width: 80%;"
         @change="handleChange"
         placeholder="请输入关键词"
       >
@@ -20,12 +20,12 @@
       </a-select>
     </div>
 
-    <div style="padding:10px; ">
+    <div class="control-res">
       <a-spin :spinning="spinning" :delay="delayTime">
         <a-card :title="index | capitalize" :loading="loading" :bordered="false" class="res-card" v-for="item, index in gencontent">{{ item }}</a-card>
       </a-spin>
     </div>
-    <div>
+    <div class="control-gen">
       <a-button @click="handleGen">文本生成</a-button>
     </div>
   </div>
@@ -123,7 +123,19 @@ export default {
 /* div {
   margin: 10px;
 } */
+.control-aspect {
+  margin: 0 0 20px 0;
+}
+.control-search {
+  margin: 0 0 20px 0;
 
+}
+.control-res {
+  margin: 0 0 20px 0;
+}
+.control-gen{
+  margin: 0 0 20px 0;  
+}
 .content {
   height: 100%;
   margin: auto;
