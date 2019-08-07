@@ -34,7 +34,7 @@
 <script>
 /* eslint-disable */
 
-const API = "http://deecamp.tangkailh.cn:10080/";
+const API = "http://deecamp.tangkailh.cn:10081/";
 
 const data = [
   {
