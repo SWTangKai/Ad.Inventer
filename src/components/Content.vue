@@ -7,34 +7,42 @@
           <a-radio-button value="b">材质</a-radio-button>
           <a-radio-button value="c">功能</a-radio-button>
         </a-radio-group>
-        <a-button @click="handleGen" style="margin-left: 10px">文案生成</a-button>
+        <a-button @click="handleGen" style="margin-left: 10px;">文案生成</a-button>
       </div>
     </div>
     <div class="control-search">
       <a-select
         :allowClear="true"
         :maxTagCount="3"
+        size="large"
         mode="tags"
-        style="width: 80%;"
+        style="width: 90%;"
         @change="handleChange"
         placeholder="请输入关键词"
       >
         <a-select-option v-for="i in keywords" :key="i">{{i}}</a-select-option>
       </a-select>
-      <a-button @click="handleGen" slot="suffix" class="search-btn" type="primary">
+      <a-button
+        ghost
+        style="position: absolute; border: #fff; height: 100%;"
+        @click="handleGen"
+        slot="suffix"
+        class="search-btn"
+        type="primary"
+      >
         <a-icon type="smile" spin />
       </a-button>
     </div>
-    <a-tabs defaultActiveKey="1" @change="callback">
-      <a-tab-pane tab="Mode 1" key="1">
-        <modeone ref="modeone" />
-      </a-tab-pane>
-      <a-tab-pane tab="Mode 2" key="2">
-        <modetwo ref="modetwo" />
-      </a-tab-pane>
-    </a-tabs>
-
-    <div class="control-gen"></div>
+    <div class="main-content">
+      <a-tabs defaultActiveKey="1" @change="callback">
+        <a-tab-pane tab="Mode 1" key="1">
+          <modeone ref="modeone" />
+        </a-tab-pane>
+        <a-tab-pane tab="Mode 2" key="2">
+          <modetwo ref="modetwo" />
+        </a-tab-pane>
+      </a-tabs>
+    </div>
   </div>
 </template>
 
@@ -102,6 +110,7 @@ export default {
 }
 .control-search {
   margin: 0 0 20px 0;
+  position: relative;
 }
 .control-res {
   margin: 0 0 20px 0;
@@ -114,6 +123,18 @@ export default {
 .content {
   height: 100%;
   margin: auto;
+}
+.search-btn {
+  /* float: left; */
+  transform: translateX(-100%);
+}
+.main-content {
+  background: rgb(255, 255, 255);
+  border-radius: 30px;
+}
+
+.main-content-close {
+  transform: translateY(100%);
 }
 
 h3 {
