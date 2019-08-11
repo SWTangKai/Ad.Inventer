@@ -1,12 +1,10 @@
 <template>
   <div class="header" >
-    <!-- <div class="header-item">
-    </div> -->
+
     <div class="header-item">
       
       <img src="../assets/logo-bold.png" style="height: 70%; margin: auto"/>
     </div>
-    <!-- <div class="header-item"></div> -->
   </div>
 </template>
 
