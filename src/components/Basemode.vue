@@ -4,7 +4,6 @@
       <a-spin style="height: 100%" :spinning="spinning" :delay="delayTime">
         <!-- <carousel :autoWidth="true" :margin="10" :nav="false" :center="true" :lazyLoad="true"> -->
           <a-card
-            :title="index | capitalize"
             :loading="loading"
             :bordered="false"
             class="res-card"
@@ -61,7 +60,7 @@ export default {
     }
   },
   filters: {
-    capitalize: function(value) {
+    Rename: function(value) {
       // console.log("TEST: ", value);
       let maps = {
         ES_result: "基于检索的方法",

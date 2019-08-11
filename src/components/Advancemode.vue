@@ -67,10 +67,6 @@
             <div class="list-item">
               <a-list-item-meta :description="item"></a-list-item-meta>
             </div>
-            <!-- <div class="add-function-button">
-                <a-button type="primary" shape="circle" icon="copy" @click="doCopy(index)" :size="size" />
-                <a-button style="float: right;" type="primary" shape="circle" icon="plus" @click="addCart(index)" :size="size" />
-            </div>-->
           </a-list-item>
         </a-list>
       </div>

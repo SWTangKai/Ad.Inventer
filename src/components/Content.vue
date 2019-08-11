@@ -11,7 +11,14 @@
       </div>
     </div>
     <div class="control-search">
-      <a-select mode="tags" style="width: 80%;" @change="handleChange" placeholder="请输入关键词">
+      <a-select
+        :allowClear="true"
+        :maxTagCount="3"
+        mode="tags"
+        style="width: 80%;"
+        @change="handleChange"
+        placeholder="请输入关键词"
+      >
         <a-select-option v-for="i in keywords" :key="i">{{i}}</a-select-option>
       </a-select>
       <a-button @click="handleGen" slot="suffix" class="search-btn" type="primary">
@@ -33,8 +40,8 @@
 
 <script>
 /* eslint-disable */
-import Basemode from "./Basemode.vue"
-import Advancemode from './Advancemode.vue';
+import Basemode from "./Basemode.vue";
+import Advancemode from "./Advancemode.vue";
 const API = "http://deecamp.tangkailh.cn:10081/";
 
 export default {
@@ -47,7 +54,7 @@ export default {
     return {
       queryWords: "",
       keywords: [],
-      aspect: "a",
+      aspect: "a"
     };
   },
   mounted() {
@@ -65,10 +72,11 @@ export default {
       this.queryWords = value;
     },
     handleGen() {
-      let params = "keywords="+this.queryWords.join(" ")+"&aspects="+this.aspect
-      window.test = this.$refss
-      this.$refs.modeone.reqGenDoc(params)
-      this.$refs.modetwo.reqGenSen(params)
+      let params =
+        "keywords=" + this.queryWords.join(" ") + "&aspects=" + this.aspect;
+      window.test = this.$refss;
+      this.$refs.modeone.reqGenDoc(params);
+      this.$refs.modetwo.reqGenSen(params);
     }
   },
   filters: {
