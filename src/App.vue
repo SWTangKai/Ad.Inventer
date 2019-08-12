@@ -41,10 +41,6 @@ export default {
   height: 100%;
 }
 
-.layout-header{
-    background: rgb(240, 242, 245);
-    margin-top: 30px;
-    margin-bottom: 7px;
-}
+
 
 </style>

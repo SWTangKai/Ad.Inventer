@@ -3,7 +3,7 @@
 
     <div class="header-item">
       
-      <img src="../assets/logo-bold.png" style="height: 70%; margin: auto"/>
+      <img src="../assets/logowhite.png" style="height: 70%; margin: auto; float: left"/>
     </div>
   </div>
 </template>
