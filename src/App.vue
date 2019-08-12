@@ -18,6 +18,8 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #b0bac4;
+  
+  background: #fff7f2;
   height: 100%;
   /* margin-top: 60px; */
 }

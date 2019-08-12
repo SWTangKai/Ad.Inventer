@@ -1,7 +1,7 @@
 <template>
   <div class="content">
-    <div class="header" style="height: 20%;">
-      <div class="header-item" style="height: 70%; margin:auto">
+    <div class="header" style="height: 80%; padding-top: 60%">
+      <div class="header-item" style="height: 20%; margin:auto">
         <div class="logo-svg" style="height: 50%;  ">
           <Logo
             style="fill:#FF5B40; display: block; height: 100%; margin:auto"
@@ -9,13 +9,13 @@
           />
         </div>
       </div>
-      <div class="control-search" style="height: 30%">
+      <div class="control-search">
         <a-select
           :allowClear="true"
           :maxTagCount="3"
           size="large"
           mode="tags"
-          style="width: 90%; "
+          style="width: 90%; padding-left: 5px"
           class="customSelect"
           @change="handleChange"
           placeholder="请输入关键词"
@@ -24,25 +24,15 @@
         </a-select>
         <a-button
           ghost
-          style="position: absolute; border: #fff; height: 100%;"
+          style="position: absolute; border: #fff; height: 100%;box-shadow: none;"
           @click="handleGen"
           slot="suffix"
           class="search-btn"
           type="primary"
         >
-          <a-icon type="smile" spin />
+          <a-icon type="arrow-right" style="color: #FF5B40" />
         </a-button>
       </div>
-    </div>
-    <div class="main-content">
-      <a-tabs defaultActiveKey="1" @change="callback">
-        <a-tab-pane tab="Mode 1" key="1">
-          <modeone ref="modeone" />
-        </a-tab-pane>
-        <a-tab-pane tab="Mode 2" key="2">
-          <modetwo ref="modetwo" />
-        </a-tab-pane>
-      </a-tabs>
     </div>
     <MainSVG style="bottom: 0; left: 0; position: fixed" />
   </div>
@@ -50,18 +40,15 @@
 
 <script>
 /* eslint-disable */
-import Basemode from "./Basemode.vue";
-import Advancemode from "./Advancemode.vue";
 import MainSVG from "../assets/svg/ui界面成稿-12.svg";
 import Logo from "../assets/svg/logo.svg";
-const API = "http://deecamp.tangkailh.cn:10081/";
 
 export default {
-  name: "Content",
+  name: "Front",
   props: {
     msg: String
   },
-  components: { modeone: Basemode, Logo, MainSVG, modetwo: Advancemode },
+  components: { Logo, MainSVG },
   data() {
     return {
       queryWords: "",
@@ -168,8 +155,20 @@ a {
 .customSelect {
   :global {
     .ant-select-selection {
-      border-radius: 30px;
+      border-radius: 20px;
+      border: 1px #ff5b40 solid;
+      font-size: 1px;
+      li {
+        border-radius: 20px;
+      }
+    }
+    // .ant-select-selection__rendered {
+    //     padding-left: 10px;
+    // }
+    .ant-select-selection__placeholder {
+        padding-left: 10px;
     }
   }
 }
+
 </style>

@@ -1,12 +1,12 @@
 <template>
   <div id="index">
     <a-layout id="components-layout-demo-top" class="layout">
-      <a-layout-header class="layout-header">
+      <!-- <a-layout-header class="layout-header">
         <Header />
-      </a-layout-header>
-      <a-layout-content>
+      </a-layout-header> -->
+      <!-- <a-layout-content> -->
         <Content />
-      </a-layout-content>
+      <!-- </a-layout-content> -->
     </a-layout>
   </div>
 </template>
@@ -30,7 +30,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #b0bac4;
+  background: #fff7f2;
   height: 100%;
   /* margin-top: 60px; */
 }
