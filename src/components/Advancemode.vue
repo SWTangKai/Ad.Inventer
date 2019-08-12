@@ -1,52 +1,30 @@
 <template>
   <div class="modetwo">
-    <!-- 搜索显示列表 -->
-    <div
-      class="demo-infinite-container"
-    >
+    <div class="demo-infinite-container">
       <a-list :dataSource="test_data_list">
         <a-list-item slot="renderItem" slot-scope="item, index">
-          <div class="list-item">
-            <a-list-item-meta :description="item.description">
-              <!-- <a slot="title">{{item.title}}</a>
-              <a-avatar
-                slot="avatar"
-                src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-              />-->
-            </a-list-item-meta>
-          </div>
-          <div class="add-function-button">
-            <!-- <a-button
-              type="primary"
-              shape="circle"
-              icon="copy"
-              @click="doCopy(index)"
-              :size="size"
-            />-->
-
-            <a-button
-              v-if="item.visible"
-              style="float: right;"
-              type="primary"
-              shape="circle"
-              icon="plus"
-              @click="addCart(index)"
-              :size="size"
-            />
-            <a-button
-              v-else
-              style="float: right;"
-              type="primary"
-              shape="circle"
-              icon="minus"
-              @click="removeCart(index)"
-              :size="size"
-            />
+          <div class="list-item" style="width: 100%">
+            <a-list-item-meta :description="item.description"></a-list-item-meta>
+            <div class="add-function-button" style="float: right">
+              <a-button
+                v-if="item.visible"
+                type="primary"
+                shape="circle"
+                icon="plus"
+                @click="addCart(index)"
+                :size="size"
+              />
+              <a-button
+                v-else
+                type="primary"
+                shape="circle"
+                icon="minus"
+                @click="removeCart(index)"
+                :size="size"
+              />
+            </div>
           </div>
         </a-list-item>
-        <!-- <div v-if="loading && !busy" class="demo-loading-container">
-            <a-spin />
-        </div>-->
       </a-list>
     </div>
 
@@ -59,7 +37,6 @@
       @close="onClose"
       :visible="visible"
     >
-
       <div class="drawer-container">
         <a-list :dataSource="shopingCart">
           <a-list-item slot="renderItem" slot-scope="item">
@@ -93,64 +70,32 @@
         <a-button
           :style="{marginRight: '8px'}"
           @click="showEditDrawer();startEdit()"
-        >
-          编辑 ({{ totalDescription }})
-        </a-button>
+        >编辑 ({{ totalDescription }})</a-button>
         <a-button @click="openNotification" type="primary">清空</a-button>
       </div>
     </a-drawer>
-
-    <!-- 编辑页 -->
-    <a-drawer
-      title="Edit"
-      :height="500"
-      placement="bottom"
-      :closable="false"
-      @close="onEditClose"
-      :visible="editVisible"
-    >
-
-      <!-- <div class="drawer-container">
-        <a-textarea :placeholder="description" :rows="6"/>
-      </div> -->
-      <a-textarea :defaultValue="description" :rows="14"/>
-
-      <div
-        :style="{
-          position: 'absolute',
-          left: 0,
-          bottom: 0,
-          width: '100%',
-          borderTop: '1px solid #e9e9e9',
-          padding: '10px 16px',
-          background: '#fff',
-          textAlign: 'right',
-        }"
-      >
-        <!-- <a-button
-          :style="{marginRight: '8px'}"
-          @click="onClose"
-        >
-          close
-        </a-button> -->
-        <a-button  type="primary">完成编辑</a-button>
-      </div>
-    </a-drawer>
-    
-    <a-button type="primary" @click="go">Open</a-button>
-
     <div class="shop-footer">
-      <a-row>
-        <a-col :span="16"></a-col>
+      <!-- <a-button-group style="width: 100%"> -->
+      <a-row style="padding: 0 10px 0 10px;">
+        <a-col :span="16">
+          <a-button class="customButton" type="primary" @click="showDrawer">已选择 [{{ totalSelectItem}}]</a-button>
+        </a-col>
         <a-col :span="8">
-          <a-button type="primary" @click="showDrawer">Open</a-button>
+          <a-button class="customButton" type="primary" @click="showDrawer">确认</a-button>
         </a-col>
       </a-row>
+      <!-- </a-button-group> -->
     </div>
-    
   </div>
 </template>
-
+<style lang="less">
+.demo-infinite-container {
+  padding: 0;
+}
+.customButton {
+  width: 100%;
+}
+</style>
 <script>
 /* eslint-disable */
 import { tmpdir } from "os";
@@ -217,7 +162,7 @@ export default {
     clearCart() {
       for (var item of this.test_data_list) {
         item.visible = true;
-      };
+      }
       this.shopingCart = [];
     },
     doCopy(index) {
@@ -244,7 +189,7 @@ export default {
       });
     },
     go() {
-      this.$router.push('/hello')
+      this.$router.push("/hello");
     },
     handleInfiniteOnLoad() {
       const data = this.data;
@@ -279,22 +224,25 @@ export default {
       var tmp_list = [];
       for (var item of this.shopingCart) {
         tmp_list.push(item.description);
-      };
-      this.description = tmp_list.join("\n")
+      }
+      this.description = tmp_list.join("\n");
     },
-    openNotification () {
-        const key = `open${Date.now()}`;
-        this.$notification.config({
-          duration: 0,
-        });
-        this.$notification.open({
-          message: 'Notification Title',
-          description: 'A function will be be called after the notification is closed (automatically after the "duration" time of manually).',
-          btn: (h)=>{
-            return h('a-button', {
+    openNotification() {
+      const key = `open${Date.now()}`;
+      this.$notification.config({
+        duration: 0
+      });
+      this.$notification.open({
+        message: "Notification Title",
+        description:
+          'A function will be be called after the notification is closed (automatically after the "duration" time of manually).',
+        btn: h => {
+          return h(
+            "a-button",
+            {
               props: {
-                type: 'primary',
-                size: 'small',
+                type: "primary",
+                size: "small"
               },
               on: {
                 click: () => {
@@ -303,23 +251,21 @@ export default {
                   this.onClose();
                 }
               }
-            }, 'Confirm')
-          },
-          key,
-        });
-      },
+            },
+            "Confirm"
+          );
+        },
+        key
+      });
+    },
     onChange(e) {
       this.placement = e.target.value;
     }
   },
 
   computed: {
-    totalDescription () {
-      let total = 0;
-      for (let i=0; i < this.shopingCart.length; i++) {
-        total += 1;
-      };
-      return total;
+    totalSelectItem: function() {
+      return this.shopingCart.filter(i => !i.visible).length;
     }
   }
 };
@@ -343,8 +289,8 @@ export default {
   width: 100%;
   text-align: center;
 }
-.drawer-container{
-    border: 1px solid #e8e8e8;
+.drawer-container {
+  border: 1px solid #e8e8e8;
   border-radius: 4px;
   overflow: auto;
   padding: 8px 24px;

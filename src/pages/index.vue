@@ -1,6 +1,6 @@
 <template>
   <div id="index">
-    <router-link class="nav-item" to="/share">编辑</router-link>
+    <!-- <router-link class="nav-item" to="/share">编辑</router-link> -->
     <a-layout id="components-layout-demo-top" class="layout">
       <a-layout-header class="layout-header">
         <Header />
@@ -15,14 +15,12 @@
 <script>
 import Content from "@/components/Content.vue";
 import Header from "@/components/Header.vue";
-// import Footer from './components/Footer.vue'
 
 export default {
   name: "app",
   components: {
     Header,
     Content
-    // Footer
   }
 };
 </script>
