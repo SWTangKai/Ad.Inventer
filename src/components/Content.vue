@@ -1,6 +1,6 @@
 <template>
   <div class="content">
-    <div class="control-aspect">
+    <div class="control-aspect close">
       <div class="aspect">
         <a-radio-group v-model="aspect">
           <a-radio-button value="a">外观</a-radio-button>
@@ -10,13 +10,14 @@
         <a-button @click="handleGen" style="margin-left: 10px;">文案生成</a-button>
       </div>
     </div>
-    <div class="control-search">
+    <div class="control-search close">
       <a-select
         :allowClear="true"
         :maxTagCount="3"
         size="large"
         mode="tags"
-        style="width: 90%;"
+        style="width: 90%; "
+        class="customSelect"
         @change="handleChange"
         placeholder="请输入关键词"
       >
@@ -33,7 +34,7 @@
         <a-icon type="smile" spin />
       </a-button>
     </div>
-    <div class="main-content">
+    <div class="main-content main-content-close">
       <a-tabs defaultActiveKey="1" @change="callback">
         <a-tab-pane tab="Mode 1" key="1">
           <modeone ref="modeone" />
@@ -154,4 +155,17 @@ a {
 .res-card {
   /* width: 100%; */
 }
+
+.close{
+  transform: translateY(100%);
+}
+</style>
+<style lang="less">
+.customSelect {
+    :global {
+      .ant-select-selection {
+        border-radius: 30px;
+      }
+    }
+  }
 </style>
