@@ -1,6 +1,6 @@
 <template>
   <div class="content">
-    <div class="control-aspect close">
+    <div class="control-aspect ">
       <div class="aspect">
         <a-radio-group v-model="aspect">
           <a-radio-button value="a">外观</a-radio-button>
@@ -10,7 +10,7 @@
         <a-button @click="handleGen" style="margin-left: 10px;">文案生成</a-button>
       </div>
     </div>
-    <div class="control-search close">
+    <div class="control-search ">
       <a-select
         :allowClear="true"
         :maxTagCount="3"
@@ -34,7 +34,7 @@
         <a-icon type="smile" spin />
       </a-button>
     </div>
-    <div class="main-content main-content-close">
+    <div class="main-content ">
       <a-tabs defaultActiveKey="1" @change="callback">
         <a-tab-pane tab="Mode 1" key="1">
           <modeone ref="modeone" />

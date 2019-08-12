@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
-import router from './router'
+import router from './router/router'
 import Antd from 'ant-design-vue'
 import 'ant-design-vue/dist/antd.less'
 import axios from 'axios'
@@ -12,6 +12,7 @@ Vue.use(Antd)
 Vue.use(VueAxios, axios)
 
 new Vue({
+  el: '#app',
   router,
-  render: h => h(App),
-}).$mount('#app')
+  render: h => h(App)
+})

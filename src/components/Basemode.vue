@@ -7,7 +7,7 @@
             :loading="loading"
             :bordered="false"
             class="res-card"
-            v-for="(item, index) in gencontent"
+            v-for="(item) in gencontent"
             v-bind:key="item"
           ><p>{{ item }}</p>
           <a-rate :defaultValue="0" />
