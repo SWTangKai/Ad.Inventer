@@ -7,7 +7,6 @@
           <a-radio-button value="b">材质</a-radio-button>
           <a-radio-button value="c">功能</a-radio-button>
         </a-radio-group>
-        <a-button @click="handleGen" style="margin-left: 10px;">文案生成</a-button>
       </div>
     </div>
     <div class="control-search ">
@@ -44,6 +43,7 @@
         </a-tab-pane>
       </a-tabs>
     </div>
+  <MainSVG />
   </div>
 </template>
 
@@ -51,6 +51,7 @@
 /* eslint-disable */
 import Basemode from "./Basemode.vue";
 import Advancemode from "./Advancemode.vue";
+import MainSVG from "../assets/svg/ui界面成稿-12.svg"
 const API = "http://deecamp.tangkailh.cn:10081/";
 
 export default {
@@ -58,7 +59,7 @@ export default {
   props: {
     msg: String
   },
-  components: { modeone: Basemode, modetwo: Advancemode },
+  components: { modeone: Basemode, MainSVG,modetwo: Advancemode },
   data() {
     return {
       queryWords: "",
