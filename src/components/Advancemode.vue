@@ -78,10 +78,13 @@
       <!-- <a-button-group style="width: 100%"> -->
       <a-row style="padding: 0 10px 0 10px;">
         <a-col :span="16">
-          <a-button class="customButton" type="primary" @click="showDrawer">已选择 [{{ totalSelectItem}}]</a-button>
+          <a-button class="customButton" size="large" type="primary" @click="showDrawer">已选择 [{{ totalSelectItem}}]</a-button>
         </a-col>
         <a-col :span="8">
-          <a-button class="customButton" type="primary" @click="showDrawer">确认</a-button>
+          <a-button class="customButton" size="large" type="primary" @click="handleRoute">
+            
+            确认
+            </a-button>
         </a-col>
       </a-row>
       <!-- </a-button-group> -->
@@ -139,6 +142,9 @@ export default {
   },
 
   methods: {
+    handleRoute() {
+      this.$router.push('/share')
+    },
     addCart(idx) {
       this.shopingCart.push({
         index: idx,

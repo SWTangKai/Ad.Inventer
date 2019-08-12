@@ -1,6 +1,5 @@
 <template>
   <div id="index">
-    <!-- <router-link class="nav-item" to="/share">编辑</router-link> -->
     <a-layout id="components-layout-demo-top" class="layout">
       <a-layout-header class="layout-header">
         <Header />
