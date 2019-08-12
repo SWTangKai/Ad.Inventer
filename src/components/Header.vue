@@ -3,20 +3,10 @@
 
     <div class="header-item">
       
-      <img src="../assets/logowhite.png" style="height: 80%; margin: auto; float: left"/>
+      <img src="../assets/logowhite.png" style="height: 90%; margin: auto; float: left"/>
 
-      <div class="control-aspect" >
-        <div class="aspect">
-          <a-radio-group v-model="aspect">
-            <a-radio-button value="a">外观</a-radio-button>
-            <a-radio-button value="b">材质</a-radio-button>
-            <a-radio-button value="c">功能</a-radio-button>
-          </a-radio-group>
-          <a-button @click="handleGen" style="margin-left: 10px">文案生成</a-button>
-        </div>
-      </div>
 
-      <div class="control-search">
+      <div class="control-search float-box">
         <a-select mode="tags" style="width: 80%;" @change="handleChange" placeholder="请输入关键词">
           <a-select-option v-for="i in keywords" :key="i">{{i}}</a-select-option>
         </a-select>
@@ -24,6 +14,26 @@
           <a-icon type="smile" spin />
         </a-button>
       </div>
+
+      <div class="control-aspect "  style="width: 40%;  float: right">
+        <div class="aspect float-box" style="width: 50%;">
+          <a-radio-group v-model="aspect">
+            <a-radio-button value="1">外观</a-radio-button>
+            <a-radio-button value="2">材质</a-radio-button>
+            <a-radio-button value="3">功能</a-radio-button>
+          </a-radio-group>
+        </div>
+
+        <div class="length float-box" style="width: 50%;" >
+          <a-radio-group v-model="length">
+            <a-radio-button value="a">短</a-radio-button>
+            <a-radio-button value="b">中</a-radio-button>
+            <a-radio-button value="c">长</a-radio-button>
+          </a-radio-group>
+        </div>
+      </div>
+
+
     
     </div>
   </div>
@@ -40,7 +50,8 @@ export default {
   data() {
     return {
       queryWords:"",
-      aspect: "a",
+      aspect: "1",
+      length: "c",
       keywords: []
     }
   },
@@ -50,7 +61,7 @@ export default {
     },
 
     handleGen(){
-      let params = "keywords="+this.queryWords.join(" ")+"&aspects="+this.aspect
+      let params = "keywords="+this.queryWords.join(" ")+"&aspects="+this.aspect+"&length="+this.length
       bus.$emit("params_in", params)
     }
   }
@@ -76,13 +87,17 @@ export default {
 }
 .control-aspect {
   /* margin: 0 0 20px 0; */
-  height: 70%;
+  height: 30%;
   float:right
 }
 .control-search {
   height: 100%;
-  width:  70%;
+  width:  50%;
   /* margin: 0 0 0 70px; */
+}
+
+.float-box{
+  float: left;
 }
 
 ul {
