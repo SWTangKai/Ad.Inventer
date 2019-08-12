@@ -43,7 +43,7 @@ export default {
 
 .layout-header{
     background: rgb(240, 242, 245);
-    margin-top: 30px;
+    margin-top: 20px;
     margin-bottom: 7px;
 }
 

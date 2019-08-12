@@ -7,22 +7,23 @@
           <a-radio-button value="b">材质</a-radio-button>
           <a-radio-button value="c">功能</a-radio-button>
         </a-radio-group>
-        <a-button @click="handleGen" style="margin-left: 10px">文案生成</a-button>
       </div>
     </div>
+
     <div class="control-search">
-      <a-select mode="tags" style="width: 80%;" @change="handleChange" placeholder="请输入关键词">
+      <a-select mode="tags" style="width: 80%;border-radius: 100px;" @change="handleChange" placeholder="请输入关键词" allowClear>
         <a-select-option v-for="i in keywords" :key="i">{{i}}</a-select-option>
       </a-select>
       <a-button @click="handleGen" slot="suffix" class="search-btn" type="primary">
         <a-icon type="smile" spin />
       </a-button>
     </div>
-    <a-tabs defaultActiveKey="1" @change="callback">
-      <a-tab-pane tab="Mode 1" key="1">
+
+    <a-tabs defaultActiveKey="1" @change="callback" style="background:lightblue; border-top-left-radius:10%;border-top-right-radius:10%">
+      <a-tab-pane tab="功能一" key="1">
         <modeone ref="modeone" />
       </a-tab-pane>
-      <a-tab-pane tab="Mode 2" key="2">
+      <a-tab-pane tab="功能二" key="2">
         <modetwo ref="modetwo" />
       </a-tab-pane>
     </a-tabs>
@@ -30,6 +31,7 @@
     <div class="control-gen"></div>
   </div>
 </template>
+
 
 <script>
 /* eslint-disable */
@@ -89,6 +91,7 @@ export default {
 /* div {
   margin: 10px;
 } */
+
 .control-aspect {
   margin: 0 0 20px 0;
 }

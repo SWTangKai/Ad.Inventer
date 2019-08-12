@@ -6,34 +6,18 @@
       v-infinite-scroll="handleInfiniteOnLoad"
       :infinite-scroll-disabled="busy"
       :infinite-scroll-distance="15"
+      style="border:lightblue"
     >
       <a-list :dataSource="searchContent">
         <a-list-item slot="renderItem" slot-scope="item, index">
           <div class="list-item">
             <a-list-item-meta :description="item">
               <a slot="title">{{item.title}}</a>
-              <a-avatar
-                slot="avatar"
-                src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-              />
             </a-list-item-meta>
           </div>
           <div class="add-function-button">
-            <a-button
-              type="primary"
-              shape="circle"
-              icon="copy"
-              @click="doCopy(index)"
-              :size="size"
-            />
-            <a-button
-              style="float: right;"
-              type="primary"
-              shape="circle"
-              icon="plus"
-              @click="addCart(index)"
-              :size="size"
-            />
+            <a-button shape="circle" icon="plus" @click="addCart(index)" :size="size" />
+            <a-button shape="circle" icon="plus" />
           </div>
         </a-list-item>
         <!-- <div v-if="loading && !busy" class="demo-loading-container">
@@ -41,14 +25,17 @@
         </div>-->
       </a-list>
     </div>
-    <div class="shop-footer">
-      <a-row>
-        <a-col :span="16"></a-col>
-        <a-col :span="8">
-          <a-button type="primary" @click="showDrawer">Open</a-button>
-        </a-col>
-      </a-row>
-    </div>
+
+    <a-button
+      @click="showDrawer"
+      style="width:40%;margin:2%;border-top-left-radius:10px;
+      border-bottom-left-radius:10px"
+    >选择</a-button>
+    <a-button
+      style="width:50%;margin:2%;border-top-right-radius:10px;
+      border-bottom-right-radius:10px "
+    >编辑</a-button>
+
     <a-drawer
       title="Basic Drawer"
       placement="bottom"
