@@ -2,9 +2,10 @@
   <div class="modetwo">
     <div class="demo-infinite-container">
       <a-list :dataSource="searchContent">
-        <a-list-item slot="renderItem" slot-scope="item, index">
+        <a-list-item slot="renderItem" slot-scope="item, index" style="border: white">
           <div class="list-item">
-            <a-list-item-meta :description="item.description"></a-list-item-meta>
+            <!-- <a-list-item-meta :description="item.description"></a-list-item-meta> -->
+            <div class="list-item-desc">{{item.description}}</div>
             <div class="add-function-button">
               <a-button
                 v-if="item.visible"
@@ -40,8 +41,8 @@
     >
       <div class="drawer-container">
         <a-list :dataSource="shopingCart">
-          <a-list-item slot="renderItem" slot-scope="item">
-            <div class="list-item" style="width: 100%">
+          <a-list-item slot="renderItem" slot-scope="item" style="border: white">
+            <div class="list-item" style="width: 100%; border-bottom:white">
               {{ item.description }}
               <!-- <a-list-item-meta :description="item.description"></a-list-item-meta> -->
               <div style="float: right">
@@ -49,6 +50,7 @@
                   type="primary"
                   shape="circle"
                   icon="minus"
+                  class="add-function-button"
                   @click="removeCart(item.index)"
                   :size="size"
                 />
@@ -70,31 +72,23 @@
           textAlign: 'right',
         }"
       >
-        <a-button
-          :style="{marginRight: '8px'}"
-          @click="handleRoute"
-        >编辑 ({{ totalSelectItem }})</a-button>
+        <a-button :style="{marginRight: '8px'}" @click="handleRoute">编辑 ({{ totalSelectItem }})</a-button>
         <a-button @click="openNotification" type="primary">清空</a-button>
       </div>
     </a-drawer>
     <div class="shop-footer">
       <!-- <a-button-group style="width: 100%"> -->
       <a-row style="padding: 0 10px 0 10px;">
-        <a-col :span="16">
+        <a-col :span="8">
           <a-button
             class="selected-btn"
             size="large"
             type="primary"
             @click="showDrawer"
-          >已选择 [{{ totalSelectItem}}]</a-button>
+          >选择（{{ totalSelectItem}}）</a-button>
         </a-col>
-        <a-col :span="8">
-           <a-button
-            class="comfer-btn"
-            size="large"
-            type="primary"
-            @click="handleRoute"
-          >确认</a-button>
+        <a-col :span="16">
+          <a-button class="comfer-btn" size="large" type="primary" @click="handleRoute">编辑</a-button>
         </a-col>
       </a-row>
       <!-- </a-button-group> -->
@@ -195,14 +189,14 @@ export default {
       this.$http.get(API + "deecamp_muti?" + param).then(response => {
         console.log(response.data);
         this.searchContent = [];
-        var tmp_dict;
-        for (var item of response.data) {
-          tmp_dict = {
-            description: item,
-            visible: true
-          };
-          this.searchContent.push(tmp_dict);
-        }
+        this.searchContent = response.data
+          .filter(d => d.length < 25)
+          .map(d => {
+            return {
+              description: d,
+              visible: true
+            };
+          });
         me.spinning = !me.spinning;
       });
     },
@@ -274,7 +268,48 @@ export default {
   }
 };
 </script>
+<style lang="less">
+.ant-drawer-content-wrapper {
+  border-radius: 20px 20px 0 0;
+  .ant-drawer-content {
+    border-radius: 20px 20px 0 0;
+    .ant-drawer-header {
+      border-radius: 20px 20px 0 0;
+    }
+    .ant-drawer-body {
+      height: 350px;
+      padding: 0;
+      .drawer-container {
+      }
+    }
+  }
+}
+</style>
 <style lang="less" scoped>
+.drawer-container {
+  border-radius: 4px;
+  overflow: auto;
+  // padding: 8px 24px;
+
+  height: 90%;
+  padding: 10px 7% 0 7%;
+  .list-item {
+    border: #ff5b40 solid 1.5px;
+    border-radius: 10px;
+    text-align: left;
+    // width: 90%;
+    padding: 5% 0 5% 5%;
+    // box-shadow: 2px 2px 3px #ff5b4040;
+    .list-item-desc {
+      float: left;
+    }
+    .add-function-button {
+      float: right;
+      transform: translateX(50%);
+      // margin-top: 9%;
+    }
+  }
+}
 .demo-infinite-container {
   border: 1px solid #fff;
   border-radius: 4px;
@@ -282,28 +317,36 @@ export default {
   padding: 8px 24px;
   height: 550px;
   .list-item {
+    border: #ff5b40 solid 1.5px;
+    border-radius: 10px;
+    text-align: left;
     width: 100%;
-    .add-function-button{
+    padding: 5% 0 5% 5%;
+    box-shadow: 2px 2px 3px #ff5b4040;
+    .list-item-desc {
+      float: left;
+    }
+    .add-function-button {
       float: right;
+      transform: translateX(50%);
+      // margin-top: 9%;
     }
   }
 }
-.shoping-car {
-  
-}
+
 .shop-footer {
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
-  button{
-     width: 100%;
+  button {
+    width: 98%;
   }
-  .selected-btn{
+  .selected-btn {
     border-radius: 10px 0 0 10px;
   }
-  .comfer-btn{
-    margin-left: 2px;
+  .comfer-btn {
+    margin-left: 5px;
     border-radius: 0 10px 10px 0;
   }
 }
@@ -318,12 +361,5 @@ export default {
   bottom: 40px;
   width: 100%;
   text-align: center;
-}
-.drawer-container {
-  border: 1px solid #e8e8e8;
-  border-radius: 4px;
-  overflow: auto;
-  padding: 8px 24px;
-  height: 200px;
 }
 </style>

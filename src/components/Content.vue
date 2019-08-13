@@ -1,38 +1,35 @@
 <template>
   <div class="content">
     <div class="header">
-      <!-- <div class="background-img">
-        <img src="../assets/search.png" alt />
-      </div>-->
       <div class="header-item">
-        <div class="logo-placehorlder"></div>
         <div class="logo-svg">
-          <Logo class="logo" preserveAspectRatio="xMinYMin meet" />
+          <!-- <Logo class="logo" preserveAspectRatio="xMinYMin meet" /> -->
+          <img src="../assets/logo-white.png" />
         </div>
-      </div>
-      <div class="control-search">
-        <a-select
-          :defaultValue="queryWords"
-          :maxTagCount="5"
-          size="large"
-          mode="tags"
-          class="customSelect customTransSelect"
-          @change="handleChange"
-          placeholder="请输入关键词"
-        >
-          <a-select-option v-for="i in keywords" :key="i">{{i}}</a-select-option>
-        </a-select>
-        <a-button ghost @click="handleGen" slot="suffix" class="search-btn" type="primary">
-          <a-icon type="arrow-right" />
-        </a-button>
+        <div class="control-search">
+          <a-select
+            :defaultValue="queryWords"
+            :maxTagCount="3"
+            size="large"
+            mode="tags"
+            class="customSelect customTransSelect"
+            @change="handleChange"
+            placeholder="请输入关键词"
+          >
+            <a-select-option v-for="i in keywords" :key="i">{{i}}</a-select-option>
+          </a-select>
+          <a-button ghost @click="handleGen" slot="suffix" class="search-btn" type="primary">
+            <a-icon type="arrow-right" />
+          </a-button>
+        </div>
       </div>
     </div>
     <div class="main-content">
       <a-tabs defaultActiveKey="1" @change="callback" class="customTab">
-        <a-tab-pane tab="一键生成" key="1">
+        <a-tab-pane tab="文不加点" key="1">
           <modeone ref="modeone" />
         </a-tab-pane>
-        <a-tab-pane tab="素材库" key="2" forceRender>
+        <a-tab-pane tab="寻章摘句" key="2" forceRender>
           <modetwo ref="modetwo" />
         </a-tab-pane>
       </a-tabs>
@@ -44,8 +41,6 @@
 /* eslint-disable */
 import Basemode from "./Basemode.vue";
 import Advancemode from "./Advancemode.vue";
-// import MainSVG from "../assets/svg/ui界面成稿-12.svg";
-// import MainSVG from "../assets/svg/ui界面成稿-12.svg";
 import Logo from "../assets/svg/logo.svg";
 const API = "http://deecamp.tangkailh.cn:10081/";
 
@@ -64,8 +59,8 @@ export default {
     };
   },
   mounted() {
-    this.queryWords = this.$route.query.words
-    this.LoadKeyword();   
+    this.queryWords = this.$route.query.words;
+    this.LoadKeyword();
     this.handleGen();
   },
   methods: {
@@ -76,14 +71,12 @@ export default {
         this.keywords = res.data.slice(0, 100);
       });
     },
-    handleChange(value) { 
+    handleChange(value) {
       // console.log(`selected ${value}`);
       this.queryWords = value;
     },
     handleGen() {
-      let params =
-        "keywords=" +
-        this.queryWords.join(" ");
+      let params = "keywords=" + this.queryWords.join(" ");
       this.$refs.modeone.reqGenDoc(params);
       this.$refs.modetwo.reqGenSen(params);
     }
@@ -120,34 +113,32 @@ export default {
       }
     }
     .header-item {
-      height: 70%;
-      .logo-placehorlder {
-        height: 30%;
-      }
+      height: 100%;
+      padding-top: 5%;
       .logo-svg {
         height: 50%;
         width: 100%;
-        .logo {
-          fill: #fff;
-          display: block;
-          height: 100%;
+        img {
+          width: 30%;
           margin: auto;
         }
       }
-    }
-    .control-search {
-      // height: 30%;
-      margin: 0 0 20px 0;
-      position: relative;
-      .customSelect {
-        width: 90%;
-      }
-      .search-btn {
-        position: absolute;
-        border: #fff;
-        height: 100%;
-        box-shadow: none;
-        transform: translateX(-100%);
+      .control-search {
+        margin-top: 5%;
+        // height: 30%;
+        margin: 0 0 20px 0;
+        position: relative;
+        // height: 50%;
+        .customSelect {
+          width: 90%;
+        }
+        .search-btn {
+          position: absolute;
+          border: #fff;
+          height: 100%;
+          box-shadow: none;
+          transform: translateX(-100%);
+        }
       }
     }
   }
@@ -158,22 +149,6 @@ export default {
     width: 100%;
     background-color: #fff;
     bottom: 0;
-  }
-  .logo-svg {
-    // z-index: -1;
-    // position: fixed;
-    // display: block;
-    // text-indent: -9999px;
-    // width: 100px;
-    // height: 100px;
-    // background: url(gblogo.svg);
-    background-size: 100px 82px;
-    .svg-draw {
-      top: 0;
-      left: 0;
-      position: fixed;
-      display: block;
-    }
   }
 }
 </style>>
