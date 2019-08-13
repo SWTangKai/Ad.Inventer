@@ -49,13 +49,13 @@
         </a-col>
       </a-row>
     </div>
-    <a-drawer
+    <!-- <a-drawer
       title="Basic Drawer"
       placement="bottom"
       :closable="false"
       @close="onClose"
       :visible="visible"
-    >
+    > -->
       <div
         class="demo-infinite-container"
         v-infinite-scroll="handleInfiniteOnLoad"
@@ -74,7 +74,7 @@
           </a-list-item>
         </a-list>
       </div>
-    </a-drawer>
+    <!-- </a-drawer> -->
   </div>
 </template>
 
