@@ -1,28 +1,28 @@
 <template>
   <div class="modetwo">
-    <div class="demo-infinite-container">
+    <div class="demo-infinite-container" style="border-color:white">
       <a-list :dataSource="searchContent">
-        <a-list-item slot="renderItem" slot-scope="item, index">
-          <div class="list-item" style="width: 100%">
+        <a-list-item slot="renderItem" slot-scope="item, index" style="border-color:white">
+          <div class="list-item" >
             <a-list-item-meta :description="item.description"></a-list-item-meta>
-            <div class="add-function-button" style="float: right">
-              <a-button
-                v-if="item.visible"
-                type="primary"
-                shape="circle"
-                icon="plus"
-                @click="addCart(index)"
-                :size="size"
-              />
-              <a-button
-                v-else
-                type="primary"
-                shape="circle"
-                icon="minus"
-                @click="removeCart(index)"
-                :size="size"
-              />
-            </div>  
+          </div>
+          <div class="add-function-button" >
+            <a-button
+              v-if="item.visible"
+              type="primary"
+              shape="circle"
+              icon="plus"
+              @click="addCart(index)"
+              :size="size"
+            />
+            <a-button
+              v-else
+              type="primary"
+              shape="circle"
+              icon="minus"
+              @click="removeCart(index)"
+              :size="size"
+            />
           </div>
         </a-list-item>
       </a-list>
@@ -39,11 +39,13 @@
     >
       <div class="drawer-container">
         <a-list :dataSource="shopingCart">
-          <a-list-item slot="renderItem" slot-scope="item">
+          <a-list-item slot="renderItem" slot-scope="item" style="border-color:white">
             <div class="list-item" style="width: 100%">
-              {{ item.description }}      
+              {{ item.description }}
               <!-- <a-list-item-meta :description="item.description"></a-list-item-meta> -->
-              <div style="float: right">
+             
+            </div> 
+            <div style="float: right" class="add-function-button">
                 <a-button
                   type="primary"
                   shape="circle"
@@ -51,9 +53,7 @@
                   @click="removeCart(item.index)"
                   :size="size"
                 />
-              </div>       
-            </div>
-            
+              </div>
           </a-list-item>
         </a-list>
       </div>
@@ -77,16 +77,27 @@
         <a-button @click="openNotification" type="primary">清空</a-button>
       </div>
     </a-drawer>
+
     <div class="shop-footer">
       <!-- <a-button-group style="width: 100%"> -->
-      <a-row style="padding: 0 10px 0 10px;">
+      <a-row style="padding: 10px 0px 0 0px;">
         <a-col :span="16">
-          <a-button class="customButton" size="large" type="primary" @click="showDrawer">已选择 [{{ totalSelectItem}}]</a-button>
+          <a-button
+            class="customButton"
+            style="border-top-left-radius:8px;border-bottom-left-radius:8px;margin-right:1%;"
+            size="large"
+            type="primary"
+            @click="showDrawer"
+          >已选择 [{{ totalSelectItem}}]</a-button>
         </a-col>
         <a-col :span="8">
-          <a-button class="customButton" size="large" type="primary" @click="startEdit();handleRoute()">
-            确认
-          </a-button>
+          <a-button
+          style="border-top-right-radius:8px;border-bottom-right-radius:8px;margin-left:2%;"
+            class="customButton"
+            size="large"
+            type="primary"
+            @click="startEdit();handleRoute()"
+          >确认</a-button>
         </a-col>
       </a-row>
       <!-- </a-button-group> -->
@@ -138,7 +149,7 @@ export default {
       shopingCart: [],
       spinning: false,
       visible: false,
-      editVisible: false,
+      editVisible: false
       // test_data_list: test_data
     };
   },
@@ -146,7 +157,7 @@ export default {
   methods: {
     handleRoute() {
       this.description = this.shopingCart.map(d => d.description).join("\n");
-      this.$router.push({path: '/share', query: { text: this.description}})
+      this.$router.push({ path: "/share", query: { text: this.description } });
     },
     addCart(idx) {
       this.shopingCart.push({
@@ -199,7 +210,7 @@ export default {
           tmp_dict = {
             description: item,
             visible: true
-          }; 
+          };
           this.searchContent.push(tmp_dict);
         }
         me.spinning = !me.spinning;
@@ -245,8 +256,7 @@ export default {
       });
       this.$notification.open({
         message: "注意",
-        description:
-          '是否确认清空购物车？',
+        description: "是否确认清空购物车？",
         btn: h => {
           return h(
             "a-button",
@@ -283,9 +293,18 @@ export default {
 </script>
 
 <style scoped>
+.add-function-button{
+  margin-left:-5%;
+  margin-top:9%
+
+}
 .list-item {
+  border: #ff5b40 solid;
+  border-radius: 15px;
   text-align: left;
-  width: 75%;
+  width: 100%;
+  padding:8%;
+  
 }
 .demo-infinite-container {
   border: 1px solid #e8e8e8;
@@ -301,10 +320,11 @@ export default {
   text-align: center;
 }
 .drawer-container {
-  border: 1px solid #e8e8e8;
+  /* border: 1px solid #e8e8e8; */
   border-radius: 4px;
   overflow: auto;
   padding: 8px 24px;
-  height: 200px;
+  height: 500px;
 }
+
 </style>

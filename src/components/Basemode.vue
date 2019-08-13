@@ -97,11 +97,19 @@ export default {
   }
 };
 </script>
+
+
 <style lang="less" scoped>
 .control-res {
   margin: 0 0 20px 0;
   overflow: hidden;
   height: 50%;
+  .swiper-slide-next{
+    margin-top:10%;
+  }
+  .swiper-slide-prev{
+    margin-top:10%;
+  }
   .res-card {
     border: #ff5b40 solid 2px;
     border-radius: 5%;
@@ -135,4 +143,5 @@ export default {
     }
   }
 }
+
 </style>

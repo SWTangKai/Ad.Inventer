@@ -25,10 +25,10 @@
     </div>
     <div class="main-content">
       <a-tabs defaultActiveKey="1" @change="callback">
-        <a-tab-pane tab="Mode 1" key="1">
+        <a-tab-pane tab="功能一" key="1">
           <modeone ref="modeone" />
         </a-tab-pane>
-        <a-tab-pane tab="Mode 2" key="2" forceRender>
+        <a-tab-pane tab="功能二" key="2" forceRender>
           <modetwo ref="modetwo" />
         </a-tab-pane>
       </a-tabs>
@@ -93,6 +93,7 @@ export default {
 </script>
 <style lang="less" scoped>
 .content {
+  
   height: 100%;
   width: 100%;
   background: #fff7f2;
@@ -119,7 +120,7 @@ export default {
     }
     .control-search {
       // height: 30%;
-      margin: 0 0 20px 0;
+      margin: 0px 0 20px 0;
       position: relative;
       .customSelect {
         width: 90%;
@@ -133,9 +134,10 @@ export default {
       }
     }
   }
-  .main-content {
+  .main-content{
     // position: fixed;
     // z-index: 999;
+    margin:7% 0 0 0;
     width: 100%;
     bottom: 0;
   }
@@ -207,9 +209,13 @@ a {
 </style>
 <style lang="less">
 .customSelect {
+  
   :global {
     .ant-select-selection {
       border-radius: 30px;
+      li{
+        font-size:18px;
+      }
     }
   }
 }

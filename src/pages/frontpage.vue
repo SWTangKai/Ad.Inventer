@@ -167,6 +167,7 @@ a {
     // }
     .ant-select-selection__placeholder {
         padding-left: 10px;
+        font-size:20px;
     }
   }
 }
