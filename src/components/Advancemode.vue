@@ -1,7 +1,7 @@
 <template>
   <div class="modetwo">
     <div class="demo-infinite-container">
-      <a-list :dataSource="test_data_list">
+      <a-list :dataSource="searchContent">
         <a-list-item slot="renderItem" slot-scope="item, index">
           <div class="list-item" style="width: 100%">
             <a-list-item-meta :description="item.description"></a-list-item-meta>
@@ -22,7 +22,7 @@
                 @click="removeCart(index)"
                 :size="size"
               />
-            </div>
+            </div>  
           </div>
         </a-list-item>
       </a-list>
@@ -40,17 +40,20 @@
       <div class="drawer-container">
         <a-list :dataSource="shopingCart">
           <a-list-item slot="renderItem" slot-scope="item">
-            <div class="list-item">
-              {{ item.description }}
-              <a-button
-                style="float: right;"
-                type="primary"
-                shape="circle"
-                icon="minus"
-                @click="removeCart(item.index)"
-                :size="size"
-              />
+            <div class="list-item" style="width: 100%">
+              {{ item.description }}      
+              <!-- <a-list-item-meta :description="item.description"></a-list-item-meta> -->
+              <div style="float: right">
+                <a-button
+                  type="primary"
+                  shape="circle"
+                  icon="minus"
+                  @click="removeCart(item.index)"
+                  :size="size"
+                />
+              </div>       
             </div>
+            
           </a-list-item>
         </a-list>
       </div>
@@ -69,8 +72,8 @@
       >
         <a-button
           :style="{marginRight: '8px'}"
-          @click="showEditDrawer();startEdit()"
-        >编辑 ({{ totalDescription }})</a-button>
+          @click="startEdit();handleRoute()"
+        >编辑 ({{ totalSelectItem }})</a-button>
         <a-button @click="openNotification" type="primary">清空</a-button>
       </div>
     </a-drawer>
@@ -81,10 +84,9 @@
           <a-button class="customButton" size="large" type="primary" @click="showDrawer">已选择 [{{ totalSelectItem}}]</a-button>
         </a-col>
         <a-col :span="8">
-          <a-button class="customButton" size="large" type="primary" @click="handleRoute">
-            
+          <a-button class="customButton" size="large" type="primary" @click="startEdit();handleRoute()">
             确认
-            </a-button>
+          </a-button>
         </a-col>
       </a-row>
       <!-- </a-button-group> -->
@@ -137,20 +139,21 @@ export default {
       spinning: false,
       visible: false,
       editVisible: false,
-      test_data_list: test_data
+      // test_data_list: test_data
     };
   },
 
   methods: {
     handleRoute() {
-      this.$router.push('/share')
+      this.description = this.shopingCart.map(d => d.description).join("\n");
+      this.$router.push({path: '/share', query: { text: this.description}})
     },
     addCart(idx) {
       this.shopingCart.push({
         index: idx,
-        description: this.test_data_list[idx].description
+        description: this.searchContent[idx].description
       });
-      this.test_data_list[idx].visible = false;
+      this.searchContent[idx].visible = false;
     },
     removeCart(idx) {
       var item;
@@ -163,10 +166,10 @@ export default {
         }
       }
       this.shopingCart.splice(remove_id, 1);
-      this.test_data_list[idx].visible = true;
+      this.searchContent[idx].visible = true;
     },
     clearCart() {
-      for (var item of this.test_data_list) {
+      for (var item of this.searchContent) {
         item.visible = true;
       }
       this.shopingCart = [];
@@ -190,7 +193,15 @@ export default {
       me.spinning = !me.spinning;
       this.$http.get(API + "deecamp_muti?" + param).then(response => {
         console.log(response.data);
-        this.searchContent = response.data;
+        this.searchContent = [];
+        var tmp_dict;
+        for (var item of response.data) {
+          tmp_dict = {
+            description: item,
+            visible: true
+          }; 
+          this.searchContent.push(tmp_dict);
+        }
         me.spinning = !me.spinning;
       });
     },
@@ -220,12 +231,6 @@ export default {
     onClose() {
       this.visible = false;
     },
-    showEditDrawer() {
-      this.editVisible = true;
-    },
-    onEditClose() {
-      this.editVisible = false;
-    },
     startEdit() {
       var tmp_list = [];
       for (var item of this.shopingCart) {
@@ -239,9 +244,9 @@ export default {
         duration: 0
       });
       this.$notification.open({
-        message: "Notification Title",
+        message: "注意",
         description:
-          'A function will be be called after the notification is closed (automatically after the "duration" time of manually).',
+          '是否确认清空购物车？',
         btn: h => {
           return h(
             "a-button",
@@ -258,7 +263,7 @@ export default {
                 }
               }
             },
-            "Confirm"
+            "确认"
           );
         },
         key

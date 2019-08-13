@@ -28,7 +28,7 @@
         <a-tab-pane tab="Mode 1" key="1">
           <modeone ref="modeone" />
         </a-tab-pane>
-        <a-tab-pane tab="Mode 2" key="2">
+        <a-tab-pane tab="Mode 2" key="2" forceRender>
           <modetwo ref="modetwo" />
         </a-tab-pane>
       </a-tabs>
@@ -54,7 +54,8 @@ export default {
     return {
       queryWords: "",
       keywords: [],
-      aspect: "a"
+      aspect: "1",
+      length: "c"
     };
   },
   mounted() {
@@ -73,8 +74,7 @@ export default {
     },
     handleGen() {
       let params =
-        "keywords=" + this.queryWords.join(" ") + "&aspects=" + this.aspect;
-      window.test = this.$refss;
+        "keywords=" + this.queryWords.join(" ") + "&aspects=" + this.aspect + "&length=" + this.length;
       this.$refs.modeone.reqGenDoc(params);
       this.$refs.modetwo.reqGenSen(params);
     }
