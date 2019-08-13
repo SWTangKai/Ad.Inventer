@@ -21,11 +21,7 @@
         <br />
         <a-button class="share"  size="large" @click="doCopy">朋友圈</a-button>
         <br />
-<<<<<<< HEAD
         <a-button class="share"  size="large" @click="showDrawer">下载图片</a-button>
-=======
-        <a-button size="large" icon="download" @click="showDrawer">下载图片</a-button>
->>>>>>> ce87c042324a14deda22982c5ac0a2a8cd7f6dd6
       </div>
     </a-drawer>
   </div>
