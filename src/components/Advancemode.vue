@@ -7,15 +7,15 @@
       :infinite-scroll-disabled="busy"
       :infinite-scroll-distance="15"
       style="    overflow: auto;
-    padding: 8px 24px;
-    height: 500px;
-    width: 50%;
-    float: left;"
+        padding: 8px 24px;
+        height: 500px;
+        width: 50%;
+        float: left;"
     >
       <a-list :dataSource="searchContent">
         <a-list-item slot="renderItem" slot-scope="item, index" >
           <div class="list-item">
-            <a-list-item-meta :description="item">
+            <a-list-item-meta :description="item.description">
               <a slot="title">{{item.title}}</a>
               <a-avatar
                 slot="avatar"
@@ -41,46 +41,39 @@
             />
           </div>
         </a-list-item>
-        <!-- <div v-if="loading && !busy" class="demo-loading-container">
-            <a-spin />
-        </div>-->
       </a-list>
     </div>
-    <!-- <div class="shop-footer">
-      <a-row>
-        <a-col :span="16"></a-col>
-        <a-col :span="8">
-          <a-button type="primary" @click="showDrawer">Open</a-button>
-        </a-col>
-      </a-row>
-    </div> -->
-    <!-- <a-drawer
-      title="Basic Drawer"
-      placement="bottom"
-      :closable="false"
-      @close="onClose"
-      :visible="visible"
-    > -->
-      <div
-        class="demo-infinite-container"
-        v-infinite-scroll="handleInfiniteOnLoad"
-        :infinite-scroll-disabled="busy"
-        :infinite-scroll-distance="15"
-      >
+    
+    <!-- <div
+      class="demo-infinite-container"
+      v-infinite-scroll="handleInfiniteOnLoad"
+      :infinite-scroll-disabled="busy"
+      :infinite-scroll-distance="15"
+    >
         <a-list :dataSource="shopingCart">
           <a-list-item slot="renderItem" 
             slot-scope="item, index">
             <div class="list-item" >
-              <a-list-item-meta :description="item"></a-list-item-meta>
+              <a-list-item-meta :description="item.description"></a-list-item-meta>
             </div>
-            <!-- <div class="add-function-button">
-                <a-button type="primary" shape="circle" icon="copy" @click="doCopy(index)" :size="size" />
-                <a-button style="float: right;" type="primary" shape="circle" icon="plus" @click="addCart(index)" :size="size" />
-            </div>-->
           </a-list-item>
         </a-list>
-      </div>
-    <!-- </a-drawer> -->
+    </div> -->
+
+    <div  class="demo-cartboard"
+      v-infinite-scroll="handleInfiniteOnLoad"
+      :infinite-scroll-disabled="busy"
+      :infinite-scroll-distance="15"
+      style="    overflow: auto;
+        padding: 8px 24px;
+        height: 500px;
+        width: 50%;
+        float: left;">
+      <br /><br />
+      <a-textarea v-model="description" style="width: 90%; height: 300px " :rows="14" />
+      <br /><br />
+      <a-button size="large" @click="doCopyCart">复制</a-button>
+    </div>
   </div>
 </template>
 
@@ -92,6 +85,7 @@ export default {
   name: "Advancemode",
   data() {
     return {
+      description: "",
       searchContent: [],
       size: "small",
       shopingCart: [],
@@ -100,12 +94,47 @@ export default {
     };
   },
   methods: {
+    
     addCart(index) {
-      this.shopingCart.push(this.searchContent[index]);
+      this.shopingCart.push({
+        index: index,
+        description: this.searchContent[index].description}
+      );
+      this.description = this.shopingCart.map(d => d.description).join("\n");
+      this.searchContent[index].visible = false;
     },
+
+    removeCart(idx) {
+      var item;
+      var remove_id = 0;
+      for (item of this.shopingCart) {
+        if (item.index == idx) {
+          break;
+        } else {
+          remove_id++;
+        }
+      }
+      this.shopingCart.splice(remove_id, 1);
+      this.searchContent[idx].visible = true;
+    },
+  
     doCopy(index) {
       this.$message.success("Copyed!", 1);
-      this.$copyText(this.searchContent[index]).then(
+      this.$copyText(this.searchContent[index].description).then(
+        function(e) {
+          // alert('Copied')
+          console.log(e);
+        },
+        function(e) {
+          alert("Can not copy");
+          console.log(e);
+        }
+      );
+    },
+
+    doCopyCart() {
+      this.$message.success("Copyed!", 1);
+      this.$copyText(this.description).then(
         function(e) {
           // alert('Copied')
           console.log(e);
@@ -123,7 +152,16 @@ export default {
       me.spinning = !me.spinning;
       this.$http.get(API + "deecamp_muti?" + param).then(response => {
         console.log(response.data);
-        this.searchContent = response.data;
+        // this.searchContent = response.data;
+        this.searchContent = [];
+        var tmp_dict;
+        for (var item of response.data) {
+          tmp_dict = {
+            description: item,
+            visible: true
+          }; 
+          this.searchContent.push(tmp_dict);
+        }
         me.spinning = !me.spinning;
       });
     },
