@@ -3,12 +3,17 @@
     <div class="control-res">
       <div class="control-things">
         <div class="aspect">
-          <a-radio-group defaultValue="a" v-model="aspect" buttonStyle="outline">
+          <a-radio-group defaultValue="a" v-model="aspect" @change="reqGenDoc" buttonStyle="outline">
             <a-radio-button value="a">外观</a-radio-button>
             <a-radio-button value="b">材质</a-radio-button>
             <a-radio-button value="c">功能</a-radio-button>
           </a-radio-group>
-          <a-radio-group defaultValue="c" v-model="lenghtOfText" buttonStyle="outline ">
+          <a-radio-group
+            defaultValue="c"
+            v-model="lenghtOfText"
+            @change="reqGenDoc"
+            buttonStyle="outline"
+          >
             <a-radio-button value="a">短</a-radio-button>
             <a-radio-button value="b">中</a-radio-button>
             <a-radio-button value="c">长</a-radio-button>
@@ -85,6 +90,7 @@ export default {
       lenghtOfText: "c",
       spinning: false,
       delayTime: 50,
+      params: "",
       now_text: "",
       now_text_idx: 0,
       swiperOption: {
@@ -103,13 +109,16 @@ export default {
   methods: {
     reqGenDoc(params) {
       console.log(params);
+      if (this.params === "") {
+        this.params = params;
+      }
       let me = this;
-      me.spinning = !me.spinning;
+      me.spinning = true;
       this.$http
         .get(
           API +
             "deecamp?" +
-            params +
+            this.params +
             "&aspects=" +
             this.aspect +
             "&length=" +
@@ -121,7 +130,7 @@ export default {
           this.now_text_idx = 0;
           this.now_text = this.gencontent[0];
           me.loading = false;
-          me.spinning = !me.spinning;
+          me.spinning = false;
         });
     },
     handleRateClick() {

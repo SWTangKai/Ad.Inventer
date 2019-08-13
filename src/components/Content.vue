@@ -28,10 +28,10 @@
     </div>
     <div class="main-content">
       <a-tabs defaultActiveKey="1" @change="callback" class="customTab">
-        <a-tab-pane tab="Mode 1" key="1">
+        <a-tab-pane tab="一键生成" key="1">
           <modeone ref="modeone" />
         </a-tab-pane>
-        <a-tab-pane tab="Mode 2" key="2" forceRender>
+        <a-tab-pane tab="素材库" key="2" forceRender>
           <modetwo ref="modetwo" />
         </a-tab-pane>
       </a-tabs>
