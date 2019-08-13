@@ -17,11 +17,11 @@
       :visible="visible"
     >
       <div class="drawer-container">
-        <a-button size="large" @click="handleBack">微信</a-button>
+        <a-button class="share" size="large" @click="handleBack">微信</a-button>
         <br />
-        <a-button size="large" @click="doCopy">朋友圈</a-button>
+        <a-button class="share"  size="large" @click="doCopy">朋友圈</a-button>
         <br />
-        <a-button size="large" @click="showDrawer">下载图片</a-button>
+        <a-button class="share"  size="large" @click="showDrawer">下载图片</a-button>
       </div>
     </a-drawer>
   </div>
@@ -66,5 +66,9 @@ export default {
 div {
   font: 2em sans-serif;
   color: brown;
+}
+.share{
+  border: #ff5b40 solid;
+  border-radius: 15px;
 }
 </style>
