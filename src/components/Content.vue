@@ -1,40 +1,30 @@
 <template>
   <div class="content">
-    <div class="control-aspect ">
-      <div class="aspect">
-        <a-radio-group v-model="aspect">
-          <a-radio-button value="1">外观</a-radio-button>
-          <a-radio-button value="2">材质</a-radio-button>
-          <a-radio-button value="3">功能</a-radio-button>
-        </a-radio-group>
-        <a-button @click="handleGen" style="margin-left: 10px;">文案生成</a-button>
+    <div class="header">
+      <div class="header-item">
+        <div class="logo-placehorlder"></div>
+        <div class="logo-svg">
+          <Logo class="logo" preserveAspectRatio="xMinYMin meet" />
+        </div>
+      </div>
+      <div class="control-search">
+        <a-select
+          :maxTagCount="3"
+          size="large"
+          mode="tags"
+          class="customSelect"
+          @change="handleChange"
+          placeholder="请输入关键词"
+        >
+          <a-select-option v-for="i in keywords" :key="i">{{i}}</a-select-option>
+        </a-select>
+        <a-button ghost @click="handleGen" slot="suffix" class="search-btn" type="primary">
+          <a-icon type="arrow-right" />
+        </a-button>
       </div>
     </div>
-    <div class="control-search ">
-      <a-select
-        :maxTagCount="3"
-        size="large"
-        mode="tags"
-        style="width: 90%; "
-        class="customSelect"
-        @change="handleChange"
-        placeholder="请输入关键词"
-      >
-        <a-select-option v-for="i in keywords" :key="i">{{i}}</a-select-option>
-      </a-select>
-      <a-button
-        ghost
-        style="position: absolute; border: #fff; height: 100%;"
-        @click="handleGen"
-        slot="suffix"
-        class="search-btn"
-        type="primary"
-      >
-        <a-icon type="smile" spin />
-      </a-button>
-    </div>
-    <div class="main-content ">
-      <a-tabs defaultActiveKey="1">
+    <div class="main-content">
+      <a-tabs defaultActiveKey="1" @change="callback">
         <a-tab-pane tab="Mode 1" key="1">
           <modeone ref="modeone" />
         </a-tab-pane>
@@ -42,7 +32,7 @@
           <modetwo ref="modetwo" />
         </a-tab-pane>
       </a-tabs>
-    </div>
+    </div>=
   </div>
 </template>
 
@@ -50,6 +40,8 @@
 /* eslint-disable */
 import Basemode from "./Basemode.vue";
 import Advancemode from "./Advancemode.vue";
+import MainSVG from "../assets/svg/ui界面成稿-12.svg";
+import Logo from "../assets/svg/logo.svg";
 const API = "http://deecamp.tangkailh.cn:10081/";
 
 export default {
@@ -57,7 +49,7 @@ export default {
   props: {
     msg: String
   },
-  components: { modeone: Basemode, modetwo: Advancemode },
+  components: { modeone: Basemode, Logo, MainSVG, modetwo: Advancemode },
   data() {
     return {
       queryWords: "",
@@ -99,19 +91,77 @@ export default {
   }
 };
 </script>
-
+<style lang="less" scoped>
+.content {
+  height: 100%;
+  width: 100%;
+  background: #fff7f2;
+  .header {
+    // position: fixed;
+    height: 20%;
+    // z-index: 100;
+    width: 100%;
+    .header-item {
+      height: 70%;
+      .logo-placehorlder {
+        height: 30%;
+      }
+      .logo-svg {
+        height: 50%;
+        width: 100%;
+        .logo {
+          fill: #ff5b40;
+          display: block;
+          height: 100%;
+          margin: auto;
+        }
+      }
+    }
+    .control-search {
+      // height: 30%;
+      margin: 0 0 20px 0;
+      position: relative;
+      .customSelect {
+        width: 90%;
+      }
+      .search-btn {
+        position: absolute;
+        border: #fff;
+        height: 100%;
+        box-shadow: none;
+        transform: translateX(-100%);
+      }
+    }
+  }
+  .main-content {
+    // position: fixed;
+    // z-index: 999;
+    width: 100%;
+    bottom: 0;
+  }
+  .logo-svg {
+    // z-index: -1;
+    // position: fixed;
+    // display: block;
+    // text-indent: -9999px;
+    // width: 100px;
+    // height: 100px;
+    // background: url(gblogo.svg);
+    background-size: 100px 82px;
+    .svg-draw {
+      top: 0;
+      left: 0;
+      position: fixed;
+      display: block;
+    }
+  }
+}
+</style>>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 /* div {
   margin: 10px;
 } */
-.control-aspect {
-  margin: 0 0 20px 0;
-}
-.control-search {
-  margin: 0 0 20px 0;
-  position: relative;
-}
 .control-res {
   margin: 0 0 20px 0;
   overflow: hidden;
@@ -121,16 +171,12 @@ export default {
   margin: 0 0 20px 0;
 }
 .content {
-  height: 100%;
-  margin: auto;
 }
-.search-btn {
-  /* float: left; */
-  transform: translateX(-100%);
-}
+
 .main-content {
   background: rgb(255, 255, 255);
-  border-radius: 30px;
+  border-radius: 30px 30px 0 0;
+  height: 80%;
 }
 
 .main-content-close {
@@ -155,16 +201,16 @@ a {
   /* width: 100%; */
 }
 
-.close{
+.close {
   transform: translateY(100%);
 }
 </style>
 <style lang="less">
 .customSelect {
-    :global {
-      .ant-select-selection {
-        border-radius: 30px;
-      }
+  :global {
+    .ant-select-selection {
+      border-radius: 30px;
     }
   }
+}
 </style>
