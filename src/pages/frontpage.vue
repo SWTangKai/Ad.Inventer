@@ -11,7 +11,6 @@
       </div>
       <div class="control-search">
         <a-select
-          :allowClear="true"
           :maxTagCount="3"
           size="large"
           mode="tags"
