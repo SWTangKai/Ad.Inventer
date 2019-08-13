@@ -2,12 +2,11 @@
   <div class="modeone">
     <div class="control-res">
       <a-spin style="height: 100%" :spinning="spinning" :delay="delayTime">
-        <!-- <carousel :autoWidth="true" :margin="10" :nav="false" :center="true" :lazyLoad="true"> -->
-    
-        <a-row >
-          <a-col :span="6"
-            v-for="(item, index) in gencontent"
+        <carousel :autoWidth="true" :margin="10" :nav="false" :center="true" :lazyLoad="true" v-for="(item, index) in gencontent"
             v-bind:key="item">
+    
+        
+         
             <a-card
               :title="index | capitalize "
 
@@ -17,8 +16,8 @@
             ><p>{{ item }}</p>
             <a-rate :defaultValue="0" />
             </a-card>  
-          </a-col>
-        </a-row>
+         
+      
 
           <!-- <a-card
             :title="index | capitalize"
@@ -30,7 +29,7 @@
           ><p>{{ item }}</p>
           <a-rate :defaultValue="0" />
           </a-card> -->
-        <!-- </carousel> -->
+        </carousel>
       </a-spin>
     </div>
 
@@ -107,5 +106,8 @@ export default {
   margin: 0 0 20px 0;
   overflow: hidden;
   height: 50%;
+}
+.res-card{
+  width:100%;
 }
 </style>
