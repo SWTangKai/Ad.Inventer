@@ -1,26 +1,5 @@
 <template>
   <div class="content">
-<!--     
-    <div class="control-aspect" >
-        <div class="aspect">
-          <a-radio-group v-model="aspect">
-            <a-radio-button value="a">外观</a-radio-button>
-            <a-radio-button value="b">材质</a-radio-button>
-            <a-radio-button value="c">功能</a-radio-button>
-          </a-radio-group>
-          <a-button @click="handleGen" style="margin-left: 10px">文案生成</a-button>
-        </div>
-      </div>
-
-      <div class="control-search">
-        <a-select mode="tags" style="width: 80%;" @change="handleChange" placeholder="请输入关键词">
-          <a-select-option v-for="i in keywords" :key="i">{{i}}</a-select-option>
-        </a-select>
-        <a-button @click="handleGen" slot="suffix" class="search-btn" type="primary">
-          <a-icon type="smile" spin />
-        </a-button>
-      </div> -->
-
     <a-tabs defaultActiveKey="1" @change="callback">
       <a-tab-pane tab="Mode 1" key="1">
         <modeone ref="modeone" />
@@ -50,12 +29,12 @@ export default {
   data() {
     return {
       queryWords: "",
-      keywords: [],
-      aspect: "a",
+      // keywords: [],
+      // aspect: "a",
     };
   },
   mounted() {
-    this.LoadKeyword();
+
     bus.$on("params_in", (val)=>{
       let params=val 
       window.test = this.$refss
@@ -63,14 +42,7 @@ export default {
       this.$refs.modetwo.reqGenSen(params)
     })
   },
-  methods: {
-    LoadKeyword() {
-      this.$http.get(API + "deecamp_keywords").then(res => {
-        this.keywords = res.data.slice(0, 100);
-      });
-    },
-    
-  },
+
   filters: {
     capitalize: function(value) {
       console.log("TEST: ", value);

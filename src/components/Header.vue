@@ -7,7 +7,15 @@
 
 
       <div class="control-search float-box">
-        <a-select mode="tags" style="width: 80%;" @change="handleChange" placeholder="请输入关键词">
+        <!-- <a-select mode="tags" style="width: 80%;" @change="handleChange" placeholder="请输入关键词"> -->
+        <a-select
+          :maxTagCount="6"
+          style="width: 80%;"
+          mode="tags"
+          class="customSelect"
+          @change="handleChange"
+          placeholder="请输入关键词"
+        >
           <a-select-option v-for="i in keywords" :key="i">{{i}}</a-select-option>
         </a-select>
         <a-button @click="handleGen" slot="suffix" class="search-btn" type="primary">
@@ -42,6 +50,8 @@
 <script>
 // import logo from './../assets/logo.png'
 import bus from './Bus.js'
+const API = "http://deecamp.tangkailh.cn:10081/";
+
 export default {
   name: "Header",
   props: {
@@ -55,7 +65,19 @@ export default {
       keywords: []
     }
   },
+
+  mounted(){
+    this.LoadKeyword();
+  },
+
   methods:{
+     LoadKeyword() {
+      this.$http.get(API + "deecamp_keywords").then(res => {
+        console.log(res.data);
+        this.keywords = res.data.slice(0, 100);
+      });
+    },
+    
     handleChange(value){
       this.queryWords = value;
     },
