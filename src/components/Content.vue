@@ -1,6 +1,9 @@
 <template>
   <div class="content">
     <div class="header">
+      <!-- <div class="background-img">
+        <img src="../assets/search.png" alt />
+      </div>-->
       <div class="header-item">
         <div class="logo-placehorlder"></div>
         <div class="logo-svg">
@@ -13,7 +16,7 @@
           :maxTagCount="5"
           size="large"
           mode="tags"
-          class="customSelect"
+          class="customSelect customTransSelect"
           @change="handleChange"
           placeholder="请输入关键词"
         >
@@ -26,10 +29,10 @@
     </div>
     <div class="main-content">
       <a-tabs defaultActiveKey="1" @change="callback" class="customTab">
-        <a-tab-pane tab="Mode 1" key="1">
+        <a-tab-pane tab="一键生成" key="1">
           <modeone ref="modeone" />
         </a-tab-pane>
-        <a-tab-pane tab="Mode 2" key="2" forceRender>
+        <a-tab-pane tab="素材库" key="2" forceRender>
           <modetwo ref="modetwo" />
         </a-tab-pane>
       </a-tabs>
@@ -41,7 +44,8 @@
 /* eslint-disable */
 import Basemode from "./Basemode.vue";
 import Advancemode from "./Advancemode.vue";
-import MainSVG from "../assets/svg/ui界面成稿-12.svg";
+// import MainSVG from "../assets/svg/ui界面成稿-12.svg";
+// import MainSVG from "../assets/svg/ui界面成稿-12.svg";
 import Logo from "../assets/svg/logo.svg";
 const API = "http://deecamp.tangkailh.cn:10081/";
 
@@ -50,12 +54,12 @@ export default {
   props: {
     msg: String
   },
-  components: { modeone: Basemode, Logo, MainSVG, modetwo: Advancemode },
+  components: { modeone: Basemode, Logo, modetwo: Advancemode },
   data() {
     return {
       queryWords: [],
       keywords: [],
-      aspect: "1",
+      aspect: "a",
       length: "c"
     };
   },
@@ -79,11 +83,7 @@ export default {
     handleGen() {
       let params =
         "keywords=" +
-        this.queryWords.join(" ") +
-        "&aspects=" +
-        this.aspect +
-        "&length=" +
-        this.length;
+        this.queryWords.join(" ");
       this.$refs.modeone.reqGenDoc(params);
       this.$refs.modetwo.reqGenSen(params);
     }
@@ -104,12 +104,21 @@ export default {
 .content {
   height: 100%;
   width: 100%;
-  background: #fff7f2;
+  background: #ff9e3a;
   .header {
     // position: fixed;
-    height: 20%;
+    height: 18%;
     // z-index: 100;
     width: 100%;
+    background-image: url(../assets/search.png);
+    background-size: 100%;
+    .background-img {
+      width: 100%;
+      z-index: -1;
+      img {
+        width: 100%;
+      }
+    }
     .header-item {
       height: 70%;
       .logo-placehorlder {
@@ -119,7 +128,7 @@ export default {
         height: 50%;
         width: 100%;
         .logo {
-          fill: #ff5b40;
+          fill: #fff;
           display: block;
           height: 100%;
           margin: auto;
@@ -145,7 +154,9 @@ export default {
   .main-content {
     // position: fixed;
     // z-index: 999;
+    height: 88%;
     width: 100%;
+    background-color: #fff;
     bottom: 0;
   }
   .logo-svg {
@@ -215,15 +226,15 @@ a {
 }
 </style>
 <style lang="less">
-.customSelect {
+.customTransSelect {
   :global {
     .ant-select-selection {
       border-radius: 30px;
+      background-color: #fff45;
     }
   }
 }
 .custonTab {
   // height: 100%;
-
 }
 </style>
