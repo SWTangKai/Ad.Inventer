@@ -12,7 +12,8 @@
       </div>
       <div class="control-search">
         <a-select
-          :maxTagCount="3"
+          :defaultValue="queryWords"
+          :maxTagCount="5"
           size="large"
           mode="tags"
           class="customSelect customTransSelect"
@@ -56,23 +57,26 @@ export default {
   components: { modeone: Basemode, Logo, modetwo: Advancemode },
   data() {
     return {
-      queryWords: "",
+      queryWords: [],
       keywords: [],
       aspect: "a",
       length: "c"
     };
   },
   mounted() {
-    this.LoadKeyword();
+    this.queryWords = this.$route.query.words
+    this.LoadKeyword();   
+    this.handleGen();
   },
   methods: {
     LoadKeyword() {
+      // TODO: fix
       this.$http.get(API + "deecamp_keywords").then(res => {
         // console.log(res.data);
         this.keywords = res.data.slice(0, 100);
       });
     },
-    handleChange(value) {
+    handleChange(value) { 
       // console.log(`selected ${value}`);
       this.queryWords = value;
     },

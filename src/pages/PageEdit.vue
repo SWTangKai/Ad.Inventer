@@ -21,7 +21,7 @@
         <br />
         <a-button size="large" @click="doCopy">朋友圈</a-button>
         <br />
-        <a-button size="large" @click="showDrawer">下载图片</a-button>
+        <a-button size="large" icon="download" @click="showDrawer">下载图片</a-button>
       </div>
     </a-drawer>
   </div>

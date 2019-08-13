@@ -41,6 +41,7 @@
 /* eslint-disable */
 import MainSVG from "../assets/svg/ui界面成稿-12.svg";
 import Logo from "../assets/svg/logo.svg";
+const API = "http://deecamp.tangkailh.cn:10081/";
 
 export default {
   name: "Front",
@@ -52,7 +53,7 @@ export default {
     return {
       queryWords: "",
       keywords: [],
-      aspect: "a"
+      aspect: "a"   
     };
   },
   mounted() {
@@ -70,11 +71,7 @@ export default {
       this.queryWords = value;
     },
     handleGen() {
-      let params =
-        "keywords=" + this.queryWords.join(" ") + "&aspects=" + this.aspect;
-      window.test = this.$refss;
-      this.$refs.modeone.reqGenDoc(params);
-      this.$refs.modetwo.reqGenSen(params);
+      this.$router.push({path: '/index', query: { words: this.queryWords}})
     }
   },
   filters: {
