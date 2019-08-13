@@ -25,7 +25,7 @@
       </div>
     </div>
     <div class="main-content">
-      <a-tabs defaultActiveKey="1" @change="callback">
+      <a-tabs defaultActiveKey="1" @change="callback" class="customTab">
         <a-tab-pane tab="Mode 1" key="1">
           <modeone ref="modeone" />
         </a-tab-pane>
@@ -33,7 +33,7 @@
           <modetwo ref="modetwo" />
         </a-tab-pane>
       </a-tabs>
-    </div>=
+    </div>
   </div>
 </template>
 
@@ -78,7 +78,12 @@ export default {
     },
     handleGen() {
       let params =
-        "keywords=" + this.queryWords.join(" ") + "&aspects=" + this.aspect + "&length=" + this.length;
+        "keywords=" +
+        this.queryWords.join(" ") +
+        "&aspects=" +
+        this.aspect +
+        "&length=" +
+        this.length;
       this.$refs.modeone.reqGenDoc(params);
       this.$refs.modetwo.reqGenSen(params);
     }
@@ -216,5 +221,9 @@ a {
       border-radius: 30px;
     }
   }
+}
+.custonTab {
+  // height: 100%;
+
 }
 </style>
