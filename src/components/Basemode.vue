@@ -3,10 +3,15 @@
     <div class="control-res">
       <div class="control-things">
         <div class="aspect">
-          <a-radio-group defaultValue="a" buttonStyle="solid">
-            <a-radio-button value="a">Hangzhou</a-radio-button>
-            <a-radio-button value="b">Shanghai</a-radio-button>
-            <a-radio-button value="c">Beijing</a-radio-button>
+          <a-radio-group defaultValue="a" v-model="aspect" buttonStyle="outline">
+            <a-radio-button value="a">外观</a-radio-button>
+            <a-radio-button value="b">材质</a-radio-button>
+            <a-radio-button value="c">功能</a-radio-button>
+          </a-radio-group>
+          <a-radio-group defaultValue="c" v-model="lenghtOfText" buttonStyle="outline ">
+            <a-radio-button value="a">短</a-radio-button>
+            <a-radio-button value="b">中</a-radio-button>
+            <a-radio-button value="c">长</a-radio-button>
           </a-radio-group>
         </div>
       </div>
@@ -61,6 +66,7 @@ export default {
       },
       loading: true,
       aspect: "a",
+      lenghtOfText: "c",
       spinning: false,
       delayTime: 50,
       swiperOption: {
@@ -81,12 +87,22 @@ export default {
       console.log(params);
       let me = this;
       me.spinning = !me.spinning;
-      this.$http.get(API + "deecamp?" + params).then(response => {
-        console.log(response.data);
-        this.gencontent = response.data;
-        me.loading = false;
-        me.spinning = !me.spinning;
-      });
+      this.$http
+        .get(
+          API +
+            "deecamp?" +
+            params +
+            "&aspects=" +
+            this.aspect +
+            "&length=" +
+            this.lenghtOfText
+        )
+        .then(response => {
+          console.log(response.data);
+          this.gencontent = response.data;
+          me.loading = false;
+          me.spinning = !me.spinning;
+        });
     },
     handleRateClick() {
       this.$message.success("感谢您的评分，这会让我们模型变得更好!", 1);

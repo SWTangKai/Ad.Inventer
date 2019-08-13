@@ -79,11 +79,7 @@ export default {
     handleGen() {
       let params =
         "keywords=" +
-        this.queryWords.join(" ") +
-        "&aspects=" +
-        this.aspect +
-        "&length=" +
-        this.length;
+        this.queryWords.join(" ");
       this.$refs.modeone.reqGenDoc(params);
       this.$refs.modetwo.reqGenSen(params);
     }
