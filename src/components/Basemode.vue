@@ -2,42 +2,26 @@
   <div class="modeone">
     <div class="control-res">
       <a-spin style="height: 100%" :spinning="spinning" :delay="delayTime">
-        <carousel :autoWidth="true" :margin="10" :nav="false" :center="true" :lazyLoad="true" v-for="(item, index) in gencontent"
-            v-bind:key="item">
-    
-        
-         
+        <a-row type="flex" justify="space-around" align="top">
+          <a-col :span="4">
             <a-card
-              :title="index | capitalize "
-
               :loading="loading"
               :bordered="false"
-              class="res-card"     
-            ><p>{{ item }}</p>
-            <a-rate :defaultValue="0" />
-            </a-card>  
-         
-      
-
-          <!-- <a-card
-            :title="index | capitalize"
-            :loading="loading"
-            :bordered="false"
-            class="res-card"
-            v-for="(item, index) in gencontent"
-            v-bind:key="item"
-          ><p>{{ item }}</p>
-          <a-rate :defaultValue="0" />
-          </a-card> -->
-        </carousel>
+              class="res-card"
+              v-for="(item, index) in gencontent"
+              v-bind:key="item"
+            >
+              <p>{{ item }}</p>
+              <a-rate :defaultValue="0" />
+            </a-card>
+          </a-col>
+        </a-row>
       </a-spin>
     </div>
-
   </div>
 </template>
 
 <script>
-
 /* eslint-disable */
 const API = "http://deecamp.tangkailh.cn:10081/";
 
@@ -45,14 +29,14 @@ import carousel from "vue-owl-carousel";
 
 export default {
   name: "Basemode",
-  components: { carousel},
+  components: { carousel },
   data() {
     return {
       gencontent: {
         ES_result: "DS",
         KOBE_result: "SS",
         KOBE_result1: "SS",
-        KOBE_result2: "SS",
+        KOBE_result2: "SS"
         // KOBE_result3: "SS",
         // KOBE_result4: "SS",
         // KOBE_result5: "SS",
@@ -61,25 +45,20 @@ export default {
       loading: true,
       aspect: "a",
       spinning: false,
-      delayTime: 50,
+      delayTime: 50
     };
   },
   methods: {
     reqGenDoc(params) {
-      console.log(params)
+      console.log(params);
       let me = this;
       me.spinning = !me.spinning;
-      this.$http
-        .get(
-          API +
-            "deecamp?" + params  
-        )
-        .then(response => {
-          console.log(response.data);
-          this.gencontent = response.data;
-          me.loading = false;
-          me.spinning = !me.spinning;
-        });
+      this.$http.get(API + "deecamp?" + params).then(response => {
+        console.log(response.data);
+        this.gencontent = response.data;
+        me.loading = false;
+        me.spinning = !me.spinning;
+      });
     }
   },
   filters: {
@@ -107,7 +86,7 @@ export default {
   overflow: hidden;
   height: 50%;
 }
-.res-card{
-  width:100%;
+.res-card {
+  width: 100%;
 }
 </style>
