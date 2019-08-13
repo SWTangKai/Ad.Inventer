@@ -4,7 +4,7 @@
       <a-tab-pane tab="Mode 1" key="1">
         <modeone ref="modeone" />
       </a-tab-pane>
-      <a-tab-pane tab="Mode 2" key="2">
+      <a-tab-pane tab="Mode 2" key="2" forceRender>
         <modetwo ref="modetwo" />
       </a-tab-pane>
     </a-tabs>

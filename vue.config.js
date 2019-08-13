@@ -4,8 +4,8 @@ module.exports = {
       loaderOptions: {
         less: {
           modifyVars: {
-            // 'primary-color': '#1DA57A',
-            // 'heading-color': '#1DA57A',
+            'primary-color': '#ff5b40',
+            'heading-color': '#fff7f2',
             'border-radius-base': '2px',
             "nav-theme": 'light'
           },

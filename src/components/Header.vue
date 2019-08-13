@@ -10,7 +10,7 @@
         <!-- <a-select mode="tags" style="width: 80%;" @change="handleChange" placeholder="请输入关键词"> -->
         <a-select
           :maxTagCount="6"
-          style="width: 80%;"
+          style="width: 80%; height:100%"
           mode="tags"
           class="customSelect"
           @change="handleChange"
@@ -26,9 +26,9 @@
       <div class="control-aspect "  style="width: 40%;  float: right">
         <div class="aspect float-box" style="width: 50%;">
           <a-radio-group v-model="aspect">
-            <a-radio-button value="1">外观</a-radio-button>
-            <a-radio-button value="2">材质</a-radio-button>
-            <a-radio-button value="3">功能</a-radio-button>
+            <a-radio-button value="a">外观</a-radio-button>
+            <a-radio-button value="b">材质</a-radio-button>
+            <a-radio-button value="c">功能</a-radio-button>
           </a-radio-group>
         </div>
 
@@ -57,10 +57,11 @@ export default {
   props: {
     msg: String
   },
+
   data() {
     return {
       queryWords:"",
-      aspect: "1",
+      aspect: "a",
       length: "c",
       keywords: []
     }
@@ -73,11 +74,11 @@ export default {
   methods:{
      LoadKeyword() {
       this.$http.get(API + "deecamp_keywords").then(res => {
-        console.log(res.data);
+        // console.log(res.data);
         this.keywords = res.data.slice(0, 100);
       });
     },
-    
+
     handleChange(value){
       this.queryWords = value;
     },

@@ -14,7 +14,9 @@
     "less-loader": "^5.0.0",
     "vue": "^2.6.10",
     "vue-axios": "^2.1.4",
-    "vue-owl-carousel": "^2.0.3"
+    "vue-clipboard2": "^0.3.0",
+    "vue-owl-carousel": "^2.0.3",
+    "vue-quill-editor": "^3.0.6"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.9.0",

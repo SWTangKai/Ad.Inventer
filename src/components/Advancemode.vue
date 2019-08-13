@@ -64,13 +64,22 @@
       v-infinite-scroll="handleInfiniteOnLoad"
       :infinite-scroll-disabled="busy"
       :infinite-scroll-distance="15"
-      style="    overflow: auto;
+      style="overflow: auto;
         padding: 8px 24px;
         height: 500px;
         width: 50%;
         float: left;">
       <br /><br />
-      <a-textarea v-model="description" style="width: 90%; height: 300px " :rows="14" />
+      <!-- <a-textarea v-model="description"  :rows="14" /> -->
+      <quill-editor class="editor"
+        v-model="description"
+        ref="myQuillEditor"
+        :options="editorOption"
+        @blur="onEditorBlur($event)" @focus="onEditorFocus($event)"
+        @change="onEditorChange($event)"
+        style="width: 90%; height: 250px "
+        :rows="14">
+      </quill-editor>
       <br /><br />
       <a-button size="large" @click="doCopyCart">复制</a-button>
     </div>
@@ -80,11 +89,17 @@
 <script>
 /* eslint-disable */
 const API = "http://deecamp.tangkailh.cn:10081/";
+import { quillEditor } from 'vue-quill-editor'
 
 export default {
   name: "Advancemode",
+
+  components: {
+    quillEditor
+  },
   data() {
     return {
+      editorOption:{} ,
       description: "",
       searchContent: [],
       size: "small",
@@ -93,7 +108,11 @@ export default {
       visible: true 
     };
   },
+
   methods: {
+    onEditorBlur(){},
+    onEditorFocus(){},
+    onEditorChange(){},
     
     addCart(index) {
       this.shopingCart.push({
@@ -101,6 +120,7 @@ export default {
         description: this.searchContent[index].description}
       );
       this.description = this.shopingCart.map(d => d.description).join("\n");
+      // this.content = this.shopingCart.map(d => d.description).join("\n");
       this.searchContent[index].visible = false;
     },
 
@@ -134,7 +154,7 @@ export default {
 
     doCopyCart() {
       this.$message.success("Copyed!", 1);
-      this.$copyText(this.description).then(
+      this.$copyText(this.description.slice(3, -4)).then(
         function(e) {
           // alert('Copied')
           console.log(e);
