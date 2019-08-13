@@ -156,7 +156,7 @@ a {
     .ant-select-selection {
       border-radius: 20px;
       border: 1px #ff5b40 solid;
-      font-size: 1px;
+      // font-size: 1px;
       li {
         border-radius: 20px;
       }

@@ -1,6 +1,15 @@
 <template>
   <div class="modeone">
     <div class="control-res">
+      <div class="control-things">
+        <div class="aspect">
+          <a-radio-group defaultValue="a" buttonStyle="solid">
+            <a-radio-button value="a">Hangzhou</a-radio-button>
+            <a-radio-button value="b">Shanghai</a-radio-button>
+            <a-radio-button value="c">Beijing</a-radio-button>
+          </a-radio-group>
+        </div>
+      </div>
       <a-spin style="height: 100%" :spinning="spinning" :delay="delayTime">
         <swiper :options="swiperOption" ref="mySwiper">
           <swiper-slide v-for="(item) in gencontent" v-bind:key="item">
@@ -13,11 +22,11 @@
               <div class="card-text-content">
                 <p>{{ item }}</p>
               </div>
-              <div class="card-rate">
+              <div class="card-rate" @click="handleRateClick">
                 <a-rate style="float: right" :defaultValue="0" />
               </div>
               <div class="rate-icon">
-                <RateIconSVG class="svg-rate-icon" />
+                <img src="../assets/rate-btn.png" alt />
               </div>
             </a-card>
           </swiper-slide>
@@ -78,6 +87,9 @@ export default {
         me.loading = false;
         me.spinning = !me.spinning;
       });
+    },
+    handleRateClick() {
+      this.$message.success("感谢您的评分，这会让我们模型变得更好!", 1);
     }
   },
   filters: {
@@ -130,11 +142,11 @@ export default {
       font-size: 110%;
     }
     .rate-icon {
-      transform: translateY(-110%);
+      transform: translateY(-120%);
       width: 20%;
       margin: 0 10%;
-      svg {
-        // fill: #ff5b40;
+      img {
+        width: 100%;
       }
     }
   }
