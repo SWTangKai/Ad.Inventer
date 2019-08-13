@@ -17,28 +17,32 @@
                 <a-rate style="float: right" :defaultValue="0" />
               </div>
               <div class="rate-icon">
-              <RateIconSVG class="svg-rate-icon" />
+                <RateIconSVG class="svg-rate-icon" />
               </div>
             </a-card>
           </swiper-slide>
         </swiper>
       </a-spin>
+      <a-button size="large" class="mode1-edit-btn" type="primary">
+        <a-icon :component="EditSVG" />编辑
+      </a-button>
     </div>
   </div>
 </template>
 
 <script>
 /* eslint-disable */
+import "swiper/dist/css/swiper.css";
+import { swiper, swiperSlide } from "vue-awesome-swiper";
 
-import RateIconSVG from "../assets/svg/2功能一评分章icon-15.svg";
+import RateIconSVG from "../assets/svg/rate-icon.svg";
+import EditSVG from "../assets/svg/2功能一编辑icon-17.svg";
 
 const API = "http://deecamp.tangkailh.cn:10081/";
 
-import "swiper/dist/css/swiper.css";
-import { swiper, swiperSlide } from "vue-awesome-swiper";
 export default {
   name: "Basemode",
-  components: { swiper, swiperSlide, RateIconSVG },
+  components: { swiper, swiperSlide, RateIconSVG, EditSVG },
   data() {
     return {
       gencontent: {
@@ -125,14 +129,19 @@ export default {
       line-height: 180%;
       font-size: 110%;
     }
-    .rate-icon{
+    .rate-icon {
       transform: translateY(-110%);
       width: 20%;
       margin: 0 10%;
-      svg{
+      svg {
         // fill: #ff5b40;
       }
     }
+  }
+  .mode1-edit-btn {
+    margin-top: 10%;
+    border-radius: 15px;
+    width: 80%;
   }
 }
 </style>

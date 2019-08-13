@@ -9,13 +9,14 @@ import 'ant-design-vue/dist/antd.less'
 
 // import VueAwesomeSwiper from 'vue-awesome-swiper'
 // import 'swiper/dist/css/swiper.css'
-
+import touch from 'vue-directive-touch';
 
 Vue.config.productionTip = false
 
 Vue.use(Antd)
 Vue.use(VueAxios, axios)
 Vue.use(VueClipboard)
+Vue.use(touch);
 
 // Vue.use(VueAwesomeSwiper);
 
