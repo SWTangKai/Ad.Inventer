@@ -16,7 +16,7 @@
         </div>
       </div>
       <a-spin style="height: 100%" :spinning="spinning" :delay="delayTime">
-        <swiper :options="swiperOption" ref="mySwiper">
+        <!-- <swiper :options="swiperOption" ref="mySwiper">
           <swiper-slide v-for="(item) in gencontent" v-bind:key="item">
             <a-card
               :loading="loading"
@@ -35,10 +35,26 @@
               </div>
             </a-card>
           </swiper-slide>
-        </swiper>
+        </swiper>-->
+        <a-card
+          :loading="loading"
+          :bordered="false"
+          class="res-card"
+          bodyStyle="height:100%; padding:20px 0px 0 0px; width: 100%"
+        >
+          <div class="card-text-content">
+            <p>{{now_text}}</p>
+          </div>
+          <div class="card-rate" @click="handleRateClick">
+            <a-rate style="float: right" :defaultValue="0" />
+          </div>
+          <div class="rate-icon">
+            <img src="../assets/rate-btn.png" alt />
+          </div>
+        </a-card>
       </a-spin>
-      <a-button size="large" class="mode1-edit-btn" type="primary">
-        <a-icon :component="EditSVG" />编辑
+      <a-button @click="handleReload" size="large" class="mode1-edit-btn" type="primary">
+        <a-icon :component="EditSVG" />不满意？点击生成更多
       </a-button>
     </div>
   </div>
@@ -69,6 +85,8 @@ export default {
       lenghtOfText: "c",
       spinning: false,
       delayTime: 50,
+      now_text: "",
+      now_text_idx: 0,
       swiperOption: {
         direction: "horizontal",
         spaceBetween: 0.1,
@@ -100,12 +118,18 @@ export default {
         .then(response => {
           console.log(response.data);
           this.gencontent = response.data;
+          this.now_text_idx = 0;
+          this.now_text = this.gencontent[0];
           me.loading = false;
           me.spinning = !me.spinning;
         });
     },
     handleRateClick() {
       this.$message.success("感谢您的评分，这会让我们模型变得更好!", 1);
+    },
+    handleReload() {
+      this.now_text_idx = (this.now_text_idx + 1) % this.gencontent.length;
+      this.now_text = this.gencontent[this.now_text_idx];
     }
   },
   filters: {
@@ -129,7 +153,7 @@ export default {
   }
 };
 </script>
-<style lang="less" scoped>
+<style lang="less">
 .control-res {
   margin: 0 0 20px 0;
   overflow: hidden;
@@ -141,6 +165,14 @@ export default {
     height: 400px;
     margin: 5% 0 0 0;
     display: inline-block;
+    .card-text-content {
+      height: 90%;
+      padding: 10%;
+      p {
+        line-height: 180%;
+        font-size: 110%;
+      }
+    }
     .card-rate {
       border-top: 3px;
       border-top-color: #ff5b40;
@@ -149,14 +181,7 @@ export default {
       padding-right: 10%;
       height: 10%;
     }
-    .card-text-content {
-      height: 90%;
-      padding: 10%;
-    }
-    p {
-      line-height: 180%;
-      font-size: 110%;
-    }
+
     .rate-icon {
       transform: translateY(-120%);
       width: 20%;

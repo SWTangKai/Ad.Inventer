@@ -12,7 +12,7 @@
       </div>
       <div class="control-search">
         <a-select
-          :maxTagCount="4"
+          :maxTagCount="3"
           size="large"
           mode="tags"
           class="customSelect customTransSelect"
