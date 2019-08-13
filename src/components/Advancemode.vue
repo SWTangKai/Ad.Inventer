@@ -72,7 +72,7 @@
       >
         <a-button
           :style="{marginRight: '8px'}"
-          @click="startEdit();handleRoute()"
+          @click="handleRoute"
         >编辑 ({{ totalSelectItem }})</a-button>
         <a-button @click="openNotification" type="primary">清空</a-button>
       </div>
@@ -84,7 +84,7 @@
           <a-button class="customButton" size="large" type="primary" @click="showDrawer">已选择 [{{ totalSelectItem}}]</a-button>
         </a-col>
         <a-col :span="8">
-          <a-button class="customButton" size="large" type="primary" @click="startEdit();handleRoute()">
+          <a-button class="customButton" size="large" type="primary" @click="handleRoute">
             确认
           </a-button>
         </a-col>
@@ -230,13 +230,6 @@ export default {
     },
     onClose() {
       this.visible = false;
-    },
-    startEdit() {
-      var tmp_list = [];
-      for (var item of this.shopingCart) {
-        tmp_list.push(item.description);
-      }
-      this.description = tmp_list.join("\n");
     },
     openNotification() {
       const key = `open${Date.now()}`;
