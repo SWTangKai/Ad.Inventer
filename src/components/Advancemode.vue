@@ -2,6 +2,7 @@
   <div class="modetwo">
     <div class="demo-infinite-container" style="border-color:white">
       <a-list :dataSource="searchContent">
+<<<<<<< HEAD
         <a-list-item slot="renderItem" slot-scope="item, index" style="border-color:white">
           <div class="list-item" >
             <a-list-item-meta :description="item.description"></a-list-item-meta>
@@ -23,6 +24,29 @@
               @click="removeCart(index)"
               :size="size"
             />
+=======
+        <a-list-item slot="renderItem" slot-scope="item, index">
+          <div class="list-item">
+            <a-list-item-meta :description="item.description"></a-list-item-meta>
+            <div class="add-function-button">
+              <a-button
+                v-if="item.visible"
+                type="primary"
+                shape="circle"
+                icon="plus"
+                @click="addCart(index)"
+                :size="size"
+              />
+              <a-button
+                v-else
+                type="primary"
+                shape="circle"
+                icon="minus"
+                @click="removeCart(index)"
+                :size="size"
+              />
+            </div>
+>>>>>>> ce87c042324a14deda22982c5ac0a2a8cd7f6dd6
           </div>
         </a-list-item>
       </a-list>
@@ -32,6 +56,7 @@
     <a-drawer
       title="素材句子"
       :height="500"
+      class="shoping-car"
       placement="bottom"
       :closable="false"
       @close="onClose"
@@ -54,6 +79,10 @@
                   :size="size"
                 />
               </div>
+<<<<<<< HEAD
+=======
+            </div>
+>>>>>>> ce87c042324a14deda22982c5ac0a2a8cd7f6dd6
           </a-list-item>
         </a-list>
       </div>
@@ -72,7 +101,7 @@
       >
         <a-button
           :style="{marginRight: '8px'}"
-          @click="startEdit();handleRoute()"
+          @click="handleRoute"
         >编辑 ({{ totalSelectItem }})</a-button>
         <a-button @click="openNotification" type="primary">清空</a-button>
       </div>
@@ -83,20 +112,32 @@
       <a-row style="padding: 10px 0px 0 0px;">
         <a-col :span="16">
           <a-button
+<<<<<<< HEAD
             class="customButton"
             style="border-top-left-radius:8px;border-bottom-left-radius:8px;margin-right:1%;"
+=======
+            class="selected-btn"
+>>>>>>> ce87c042324a14deda22982c5ac0a2a8cd7f6dd6
             size="large"
             type="primary"
             @click="showDrawer"
           >已选择 [{{ totalSelectItem}}]</a-button>
         </a-col>
         <a-col :span="8">
+<<<<<<< HEAD
           <a-button
           style="border-top-right-radius:8px;border-bottom-right-radius:8px;margin-left:2%;"
             class="customButton"
             size="large"
             type="primary"
             @click="startEdit();handleRoute()"
+=======
+           <a-button
+            class="comfer-btn"
+            size="large"
+            type="primary"
+            @click="handleRoute"
+>>>>>>> ce87c042324a14deda22982c5ac0a2a8cd7f6dd6
           >确认</a-button>
         </a-col>
       </a-row>
@@ -104,14 +145,7 @@
     </div>
   </div>
 </template>
-<style lang="less">
-.demo-infinite-container {
-  padding: 0;
-}
-.customButton {
-  width: 100%;
-}
-</style>
+
 <script>
 /* eslint-disable */
 import { tmpdir } from "os";
@@ -242,13 +276,6 @@ export default {
     onClose() {
       this.visible = false;
     },
-    startEdit() {
-      var tmp_list = [];
-      for (var item of this.shopingCart) {
-        tmp_list.push(item.description);
-      }
-      this.description = tmp_list.join("\n");
-    },
     openNotification() {
       const key = `open${Date.now()}`;
       this.$notification.config({
@@ -291,6 +318,7 @@ export default {
   }
 };
 </script>
+<<<<<<< HEAD
 
 <style scoped>
 .add-function-button{
@@ -306,12 +334,46 @@ export default {
   padding:8%;
   
 }
+=======
+<style lang="less" scoped>
+>>>>>>> ce87c042324a14deda22982c5ac0a2a8cd7f6dd6
 .demo-infinite-container {
-  border: 1px solid #e8e8e8;
+  border: 1px solid #fff;
   border-radius: 4px;
   overflow: auto;
   padding: 8px 24px;
-  height: 500px;
+  height: 550px;
+  .list-item {
+    width: 100%;
+    .add-function-button{
+      float: right;
+    }
+  }
+}
+.shoping-car {
+  
+}
+.shop-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  button{
+     width: 100%;
+  }
+  .selected-btn{
+    border-radius: 10px 0 0 10px;
+  }
+  .comfer-btn{
+    margin-left: 2px;
+    border-radius: 0 10px 10px 0;
+  }
+}
+</style>
+<style scoped>
+.list-item {
+  text-align: left;
+  width: 75%;
 }
 .demo-loading-container {
   position: absolute;

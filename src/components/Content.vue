@@ -9,7 +9,8 @@
       </div>
       <div class="control-search">
         <a-select
-          :maxTagCount="3"
+          :defaultValue="queryWords"
+          :maxTagCount="5"
           size="large"
           mode="tags"
           class="customSelect"
@@ -24,15 +25,20 @@
       </div>
     </div>
     <div class="main-content">
+<<<<<<< HEAD
       <a-tabs defaultActiveKey="1" @change="callback">
         <a-tab-pane tab="功能一" key="1">
+=======
+      <a-tabs defaultActiveKey="1" @change="callback" class="customTab">
+        <a-tab-pane tab="Mode 1" key="1">
+>>>>>>> ce87c042324a14deda22982c5ac0a2a8cd7f6dd6
           <modeone ref="modeone" />
         </a-tab-pane>
         <a-tab-pane tab="功能二" key="2" forceRender>
           <modetwo ref="modetwo" />
         </a-tab-pane>
       </a-tabs>
-    </div>=
+    </div>
   </div>
 </template>
 
@@ -52,29 +58,37 @@ export default {
   components: { modeone: Basemode, Logo, MainSVG, modetwo: Advancemode },
   data() {
     return {
-      queryWords: "",
+      queryWords: [],
       keywords: [],
       aspect: "1",
       length: "c"
     };
   },
   mounted() {
-    this.LoadKeyword();
+    this.queryWords = this.$route.query.words
+    this.LoadKeyword();   
+    this.handleGen();
   },
   methods: {
     LoadKeyword() {
+      // TODO: fix
       this.$http.get(API + "deecamp_keywords").then(res => {
         // console.log(res.data);
         this.keywords = res.data.slice(0, 100);
       });
     },
-    handleChange(value) {
+    handleChange(value) { 
       // console.log(`selected ${value}`);
       this.queryWords = value;
     },
     handleGen() {
       let params =
-        "keywords=" + this.queryWords.join(" ") + "&aspects=" + this.aspect + "&length=" + this.length;
+        "keywords=" +
+        this.queryWords.join(" ") +
+        "&aspects=" +
+        this.aspect +
+        "&length=" +
+        this.length;
       this.$refs.modeone.reqGenDoc(params);
       this.$refs.modetwo.reqGenSen(params);
     }
@@ -218,5 +232,9 @@ a {
       }
     }
   }
+}
+.custonTab {
+  // height: 100%;
+
 }
 </style>
