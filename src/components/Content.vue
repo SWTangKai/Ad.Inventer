@@ -3,16 +3,15 @@
     <div class="control-aspect ">
       <div class="aspect">
         <a-radio-group v-model="aspect">
-          <a-radio-button value="a">外观</a-radio-button>
-          <a-radio-button value="b">材质</a-radio-button>
-          <a-radio-button value="c">功能</a-radio-button>
+          <a-radio-button value="1">外观</a-radio-button>
+          <a-radio-button value="2">材质</a-radio-button>
+          <a-radio-button value="3">功能</a-radio-button>
         </a-radio-group>
         <a-button @click="handleGen" style="margin-left: 10px;">文案生成</a-button>
       </div>
     </div>
     <div class="control-search ">
       <a-select
-        :allowClear="true"
         :maxTagCount="3"
         size="large"
         mode="tags"
@@ -35,11 +34,11 @@
       </a-button>
     </div>
     <div class="main-content ">
-      <a-tabs defaultActiveKey="1" @change="callback">
+      <a-tabs defaultActiveKey="1">
         <a-tab-pane tab="Mode 1" key="1">
           <modeone ref="modeone" />
         </a-tab-pane>
-        <a-tab-pane tab="Mode 2" key="2">
+        <a-tab-pane tab="Mode 2" key="2" forceRender>
           <modetwo ref="modetwo" />
         </a-tab-pane>
       </a-tabs>
@@ -63,7 +62,8 @@ export default {
     return {
       queryWords: "",
       keywords: [],
-      aspect: "a"
+      aspect: "1",
+      length: "c"
     };
   },
   mounted() {
@@ -82,8 +82,7 @@ export default {
     },
     handleGen() {
       let params =
-        "keywords=" + this.queryWords.join(" ") + "&aspects=" + this.aspect;
-      window.test = this.$refss;
+        "keywords=" + this.queryWords.join(" ") + "&aspects=" + this.aspect + "&length=" + this.length;
       this.$refs.modeone.reqGenDoc(params);
       this.$refs.modetwo.reqGenSen(params);
     }
