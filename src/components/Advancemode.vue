@@ -291,10 +291,10 @@ export default {
   overflow: auto;
   // padding: 8px 24px;
 
-  height: 90%;
+  height: 400px;
   padding: 10px 7% 0 7%;
   .list-item {
-    border: #ff5b40 solid 1.5px;
+    border: #ff5b40 solid 1px;
     border-radius: 10px;
     text-align: left;
     // width: 90%;
