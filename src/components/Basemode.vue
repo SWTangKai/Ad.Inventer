@@ -93,7 +93,7 @@ export default {
   },
   mounted() {
     console.log("this is current swiper instance object", this.swiper);
-    this.swiper.slideTo(3, 1000, false);
+    this.swiper.slideTo(1, 1000, false);
   }
 };
 </script>
@@ -112,7 +112,7 @@ export default {
   }
   .res-card {
     border: #ff5b40 solid 2px;
-    border-radius: 5%;
+    border-radius: 15px;
     width: 90%;
     height: 400px;
     margin: 5% 0 0 0;
