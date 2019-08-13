@@ -3,8 +3,7 @@
     <div class="control-res">
       <a-spin style="height: 100%" :spinning="spinning" :delay="delayTime">
         <!-- <carousel :autoWidth="true" :margin="10" :nav="false" :center="true" :lazyLoad="true"> -->
- 
-      
+    
         <a-row >
           <a-col :span="6"
             v-for="(item, index) in gencontent"
@@ -55,10 +54,10 @@ export default {
         KOBE_result: "SS",
         KOBE_result1: "SS",
         KOBE_result2: "SS",
-        KOBE_result3: "SS",
-        KOBE_result4: "SS",
-        KOBE_result5: "SS",
-        KOBE_result6: "SS"
+        // KOBE_result3: "SS",
+        // KOBE_result4: "SS",
+        // KOBE_result5: "SS",
+        // KOBE_result6: "SS"
       },
       loading: true,
       aspect: "a",
@@ -88,14 +87,14 @@ export default {
     capitalize: function(value) {
       // console.log("TEST: ", value);
       let maps = {
-        ES_result: "基于检索的方法",
-        KOBE_result: "基于生成的方法1",
-        KOBE_result1: "基于生成的方法2",
-        KOBE_result2: "基于生成的方法3",
-        KOBE_result3: "基于生成的方法4",
-        KOBE_result4: "基于生成的方法5",
-        KOBE_result5: "基于生成的方法6",
-        KOBE_result6: "基于生成的方法7"
+        // ES_result: "基于生成的方法",
+        // KOBE_result: "基于检索的方法1",
+        // KOBE_result1: "基于的方法2",
+        // KOBE_result2: "基于生成的方法3",
+        // KOBE_result3: "基于生成的方法4",
+        // KOBE_result4: "基于生成的方法5",
+        // KOBE_result5: "基于生成的方法6",
+        // KOBE_result6: "基于生成的方法7"
       };
       return maps[value];
     }

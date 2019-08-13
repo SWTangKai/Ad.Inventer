@@ -6,9 +6,14 @@
       v-infinite-scroll="handleInfiniteOnLoad"
       :infinite-scroll-disabled="busy"
       :infinite-scroll-distance="15"
+      style="    overflow: auto;
+    padding: 8px 24px;
+    height: 500px;
+    width: 50%;
+    float: left;"
     >
       <a-list :dataSource="searchContent">
-        <a-list-item slot="renderItem" slot-scope="item, index">
+        <a-list-item slot="renderItem" slot-scope="item, index" >
           <div class="list-item">
             <a-list-item-meta :description="item">
               <a slot="title">{{item.title}}</a>
@@ -41,14 +46,14 @@
         </div>-->
       </a-list>
     </div>
-    <div class="shop-footer">
+    <!-- <div class="shop-footer">
       <a-row>
         <a-col :span="16"></a-col>
         <a-col :span="8">
           <a-button type="primary" @click="showDrawer">Open</a-button>
         </a-col>
       </a-row>
-    </div>
+    </div> -->
     <!-- <a-drawer
       title="Basic Drawer"
       placement="bottom"
@@ -63,8 +68,9 @@
         :infinite-scroll-distance="15"
       >
         <a-list :dataSource="shopingCart">
-          <a-list-item slot="renderItem" slot-scope="item, index">
-            <div class="list-item">
+          <a-list-item slot="renderItem" 
+            slot-scope="item, index">
+            <div class="list-item" >
               <a-list-item-meta :description="item"></a-list-item-meta>
             </div>
             <!-- <div class="add-function-button">
@@ -90,7 +96,7 @@ export default {
       size: "small",
       shopingCart: [],
       spinning: false,
-      visible: false
+      visible: true 
     };
   },
   methods: {
@@ -155,7 +161,7 @@ export default {
 <style scoped>
 .list-item {
   text-align: left;
-  width: 75%;
+  width: 90%;
 }
 .demo-infinite-container {
   border: 1px solid #e8e8e8;
