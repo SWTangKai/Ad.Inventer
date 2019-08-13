@@ -14,7 +14,10 @@
                 <p>{{ item }}</p>
               </div>
               <div class="card-rate">
-                <a-rate :defaultValue="0" />
+                <a-rate style="float: right" :defaultValue="0" />
+              </div>
+              <div class="rate-icon">
+              <RateIconSVG class="svg-rate-icon" />
               </div>
             </a-card>
           </swiper-slide>
@@ -26,13 +29,16 @@
 
 <script>
 /* eslint-disable */
+
+import RateIconSVG from "../assets/svg/2功能一评分章icon-15.svg";
+
 const API = "http://deecamp.tangkailh.cn:10081/";
 
 import "swiper/dist/css/swiper.css";
 import { swiper, swiperSlide } from "vue-awesome-swiper";
 export default {
   name: "Basemode",
-  components: { swiper, swiperSlide },
+  components: { swiper, swiperSlide, RateIconSVG },
   data() {
     return {
       gencontent: {
@@ -97,7 +103,7 @@ export default {
   overflow: hidden;
   height: 50%;
   .res-card {
-    border: #ff5b40 solid;
+    border: #ff5b40 solid 2px;
     border-radius: 5%;
     width: 90%;
     height: 400px;
@@ -107,6 +113,9 @@ export default {
       border-top: 3px;
       border-top-color: #ff5b40;
       border-top-style: solid;
+      border-top-width: 2px;
+      padding-right: 10%;
+      height: 10%;
     }
     .card-text-content {
       height: 90%;
@@ -114,7 +123,15 @@ export default {
     }
     p {
       line-height: 180%;
-      font-size: 120%;
+      font-size: 110%;
+    }
+    .rate-icon{
+      transform: translateY(-110%);
+      width: 20%;
+      margin: 0 10%;
+      svg{
+        // fill: #ff5b40;
+      }
     }
   }
 }
