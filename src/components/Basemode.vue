@@ -2,15 +2,9 @@
   <div class="modeone">
     <div class="control-res">
       <a-spin style="height: 100%" :spinning="spinning" :delay="delayTime">
-        <a-row type="flex" justify="space-around" align="top">
-          <a-col :span="4">
-            <a-card
-              :loading="loading"
-              :bordered="false"
-              class="res-card"
-              v-for="(item, index) in gencontent"
-              v-bind:key="item"
-            >
+        <a-row type="flex" justify="space-around" align="top" :gutter="16">
+          <a-col :span="6" class="gutter-row" v-for="(item, index) in gencontent" v-bind:key="item">
+            <a-card :loading="loading" :bordered="false" class="res-card">
               <p>{{ item }}</p>
               <a-rate :defaultValue="0" />
             </a-card>

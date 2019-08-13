@@ -1,5 +1,6 @@
 <template>
   <div class="content">
+
     <a-tabs defaultActiveKey="1" @change="callback">
       <a-tab-pane tab="寻章" key="1">
         <modeone ref="modeone" />
@@ -8,16 +9,14 @@
         <modetwo ref="modetwo" />
       </a-tab-pane>
     </a-tabs>
-
-   
   </div>
 </template>
 
 <script>
 /* eslint-disable */
-import bus from "./Bus.js"
-import Basemode from "./Basemode.vue"
-import Advancemode from './Advancemode.vue';
+import bus from "./Bus.js";
+import Basemode from "./Basemode.vue";
+import Advancemode from "./Advancemode.vue";
 const API = "http://deecamp.tangkailh.cn:10081/";
 
 export default {
@@ -29,18 +28,18 @@ export default {
   data() {
     return {
       queryWords: "",
-      // keywords: [],
+      keywords: [],
       // aspect: "a",
+      // length: "c"
     };
   },
   mounted() {
-
-    bus.$on("params_in", (val)=>{
-      let params=val 
-      window.test = this.$refss
-      this.$refs.modeone.reqGenDoc(params)
-      this.$refs.modetwo.reqGenSen(params)
-    })
+    bus.$on("params_in", val => {
+      let params = val;
+      window.test = this.$refss;
+      this.$refs.modeone.reqGenDoc(params);
+      this.$refs.modetwo.reqGenSen(params);
+    });
   },
 
   filters: {
@@ -52,7 +51,8 @@ export default {
       };
       return maps[value];
     }
-  }
+  },
+  
 };
 </script>
 
@@ -61,8 +61,9 @@ export default {
 /* div {
   margin: 10px;
 } */
-.content{
-    margin:5%;
+.content {
+  margin: 5%;
+  
 }
 .control-res {
   margin: 0 0 20px 0;
@@ -76,7 +77,16 @@ export default {
   height: 100%;
   margin: auto;
 }
-
+.control-aspect {
+  /* margin: 0 0 20px 0; */
+  height: 30%;
+  float: right;
+}
+.control-search {
+  height: 100%;
+  width: 50%;
+  /* margin: 0 0 0 70px; */
+}
 h3 {
   margin: 40px 0 0;
 }

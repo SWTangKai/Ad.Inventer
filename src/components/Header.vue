@@ -1,41 +1,49 @@
 <template>
   <div class="header">
-    <div class="header-item">
-      <img src="../assets/logowhite.png" style="height: 90%; margin: auto; float: left" />
-      <p>Ai文案</p>
-    </div>
-    <div class="header-item float-box">
-      <!-- <a-select mode="tags" style="width: 80%;" @change="handleChange" placeholder="请输入关键词"> -->
-      <a-select
-        :maxTagCount="6"
-        style="width: 80%; height:100%"
-        mode="tags"
-        class="customSelect"
-        @change="handleChange"
-        placeholder="请输入关键词"
-      >
-        <a-select-option v-for="i in keywords" :key="i">{{i}}</a-select-option>
-      </a-select>
-      <a-button @click="handleGen" slot="suffix" class="search-btn" type="primary">
-        <a-icon type="smile" spin />
-      </a-button>
-    </div>
-
-    <div class="header-item">
-      <div class="aspect float-box" style="width: 50%;">
-        <a-radio-group v-model="aspect">
-          <a-radio-button value="a">外观</a-radio-button>
-          <a-radio-button value="b">材质</a-radio-button>
-          <a-radio-button value="c">功能</a-radio-button>
-        </a-radio-group>
+    <div style="width:100%;height:100%;padding-top:8%;">
+      <div class="header-word">
+        <img src="../assets/logowhite.png" style="width:7%;height:7%;float:left;margin-left:35%;margin-top:-1%;" />
+        <p style="margin-top:3%;margin-bottom:3%;margin-right:25%;">Ai文案</p>
       </div>
 
-      <div class="length float-box" style="width: 50%;">
-        <a-radio-group v-model="length">
-          <a-radio-button value="a">短</a-radio-button>
-          <a-radio-button value="b">中</a-radio-button>
-          <a-radio-button value="c">长</a-radio-button>
-        </a-radio-group>
+      <div class="header-search" style="padding-top:2%;width:100%;">
+        <!-- <a-select mode="tags" style="width: 80%;" @change="handleChange" placeholder="请输入关键词"> -->
+        <a-select
+          :maxTagCount="6"
+          style="width:40%;"
+          mode="tags"
+          class="customSelect"
+          @change="handleChange"
+          placeholder="请输入关键词"
+        >
+          <a-select-option v-for="i in keywords" :key="i">{{i}}</a-select-option>
+        </a-select>
+        <a-button
+          @click="handleGen"
+          slot="suffix"
+          class="search-btn"
+          style="background:transparent;margin-left:-3.2%;border:none;"
+        >
+          <a-icon type="smile" spin style="color:black;" />
+        </a-button>
+      </div>
+
+      <div class="header-item" style="width:55%;margin-left:23.2%; ">
+        <div class="aspect" style="width:50%;float:left;">
+          <a-radio-group v-model="aspect">
+            <a-radio-button class="btn" value="a">外观</a-radio-button>
+            <a-radio-button class="btn" value="b">材质</a-radio-button>
+            <a-radio-button class="btn" value="c">功能</a-radio-button>
+          </a-radio-group>
+        </div>
+
+        <div class="length" style="width: 50%;float:right;">
+          <a-radio-group v-model="length">
+            <a-radio-button class="btn" value="a">短</a-radio-button>
+            <a-radio-button class="btn" value="b">中</a-radio-button>
+            <a-radio-button class="btn" value="c">长</a-radio-button>
+          </a-radio-group>
+        </div>
       </div>
     </div>
   </div>
@@ -94,33 +102,20 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .header {
-
-  height: 50%;
-  widows: 100%;
- 
-}
-.header-item {
-
-height:100%;
-  width: 100%;
- 
-  float: left;
-  color: grey;
-  font-size: large;
-}
-.control-aspect {
-  /* margin: 0 0 20px 0; */
-  height: 30%;
-  float: right;
-}
-.control-search {
   height: 100%;
-  width: 50%;
-  /* margin: 0 0 0 70px; */
+  width: 100%;
+}
+.customSelect {
+  width: 70%;
 }
 
-.float-box {
-  float: left;
+.header-word {
+  width: 100%;
+  color: white;
+
+  text-align: center;
+  font-size: 700%;
+  font:bold;
 }
 
 ul {
