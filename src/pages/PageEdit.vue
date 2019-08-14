@@ -6,7 +6,7 @@
       <br /><br />
       <a-button size="large" @click="handleBack">首页</a-button>
       <a-button size="large" @click="doCopy">复制</a-button>
-      <a-button size="large" @click="generatePicture">分享</a-button>
+      <a-button size="large">分享</a-button>
     </div>
     <div class="share-img" id="shareImg" ref="capImg"></div>
 
@@ -50,8 +50,6 @@ export default {
   methods: {
     generatePicture() {
       const opts = {
-        width: "112px",
-        height: "132px",
         backgroundColor: null,
         scale: 1
       }
