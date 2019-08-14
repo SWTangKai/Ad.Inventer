@@ -109,9 +109,10 @@ export default {
   methods: {
     reqGenDoc(params) {
       console.log(params);
-      if (this.params === "") {
+      if (typeof(params) !== "object") {
         this.params = params;
       }
+
       let me = this;
       me.spinning = true;
       this.$http
@@ -201,7 +202,7 @@ export default {
     }
   }
   .mode1-edit-btn {
-    margin-top: 10%;
+    margin-top: 3%;
     border-radius: 15px;
     width: 80%;
   }
