@@ -3,38 +3,52 @@
     <div class="edit-header">
       <img src="../assets/logo-word.png" alt="">
     </div>
-    <div class="edit-content" ref="capture">
+    <div class="edit-content">
       <div class="edit-card">
         <a-textarea class="edit-editarea" v-model="description" :rows="14" />
         <div class="edit-btns">
           <div class="edit-btns-group">
             <a-button size="large" @click="handleBack">首页</a-button>
             <a-button size="large" @click="doCopy">复制</a-button>
-            <a-button size="large" @click="generatePicture">分享</a-button>
+            <a-button size="large" @click="genPicture">分享</a-button>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="share-img" id="shareImg" ref="capImg"></div>
-
-    <a-drawer
-      title="素材句子"
-      :height="300"
-      placement="bottom"
-      :closable="false"
-      @close="onClose"
-      :visible="visible"
-    >
-      <div class="drawer-container">
-        <a-button size="large">微信</a-button>
-        <br />
-        <a-button size="large">朋友圈</a-button>
-        <br />
-        <!-- <a-button size="large" icon="download" @click="clickGeneratePicture">下载图片</a-button> -->
-        <a-button size="large" icon="download">下载图片</a-button>
+    <div>
+      <div ref="capture">
+        <a-card
+          hoverable
+          style="width: 300px"
+        >
+          <img
+            alt="example"
+            src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+            slot="cover"
+          />
+          <a-card-meta
+            title="Card title"
+            description="This is the description">
+            <!-- <a-avatar slot="avatar" src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" /> -->
+          </a-card-meta>
+        </a-card>
       </div>
-    </a-drawer>
+      <a-button type="primary" @click="showModal">Open Modal with async logic</a-button>
+      <a-modal
+        title=""
+        :footer="null"
+        :visible="visible"
+        @cancel="handleCancel"
+      >
+        <!-- <div ref="shareImg">
+        </div> -->
+        <img :src="imgUri" />
+        <!-- <p>{{ModalText}}</p> -->
+      </a-modal>
+      <img :src="imgUri" />
+      <!-- <div ref="shareImg"></div> -->
+    </div>
   </div>
 </template>
 
@@ -48,21 +62,20 @@ export default {
     return {
       description: "",
       visible: false,
-      modalVisible: false,
-      modalLoading: false
     };
   },
   mounted() {
     this.loadDescription();
   },
   methods: {
-    generatePicture() {
+    genPicture() {
       const opts = {
         backgroundColor: null,
         scale: 1
       };
       html2canvas(this.$refs.capture, opts).then(canvas => {
-        document.getElementById("shareImg").appendChild(canvas);
+        // this.$refs.shareImg.appendChild(canvas);
+        this.imgUri = canvas.toDataURL("image/png")
       });
     },
     doCopy() {
@@ -72,15 +85,24 @@ export default {
     handleBack() {
       this.$router.push("/");
     },
-    showDrawer() {
-      this.visible = true;
-    },
-    onClose() {
-      this.visible = false;
-    },
     loadDescription() {
       this.description = this.$route.query.text;
-    }
+    },
+    showModal() {
+      this.visible = true
+    },
+    // handleOk(e) {
+    //   this.ModalText = 'The modal will be closed after two seconds';
+    //   this.confirmLoading = true;
+    //   setTimeout(() => {
+    //     this.visible = false;
+    //     this.confirmLoading = false;
+    //   }, 2000);
+    // },
+    handleCancel(e) {
+      console.log('Clicked cancel button');
+      this.visible = false
+    },
   }
 };
 </script>
