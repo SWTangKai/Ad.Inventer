@@ -45,7 +45,10 @@ export default {
   background-color: #fafafa00 
   /* background:rgb(206, 214, 224); */
 }
-
+.layout-content{
+ background: rgba(255,255, 255,0.5);
+ 
+}
 .layout-header{
   /* background-image:url('./assets/pic.jpg');
   background-repeat: repeat-y; */

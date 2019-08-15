@@ -74,7 +74,7 @@ export default {
   margin: 0 0 20px 0;
 }
 .content {
-  height: 100%;
+  
   margin: auto;
 }
 .control-aspect {
@@ -103,17 +103,5 @@ a {
 }
 .res-card {
   /* width: 100%; */
-}</style>
-<style lang="en">
-.customSelect {
-  
-  :global {
-    .ant-select-selection {
-      border-radius: 30px;
-      li{
-        font-size:18px;
-      }
-    }
-  }
 }
 </style>

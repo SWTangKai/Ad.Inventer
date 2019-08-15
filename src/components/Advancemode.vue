@@ -6,19 +6,19 @@
       v-infinite-scroll="handleInfiniteOnLoad"
       :infinite-scroll-disabled="busy"
       :infinite-scroll-distance="15"
-      style="    overflow: auto;
-        padding: 8px 24px;
-        height: 500px;
-        width: 50%;
-        float: left;"
+      style="    overflow:auto;
+       margin:0 1% 0 2%;
+        height:350px;
+        width: 47%;
+        float:left;"
     >
       <a-list :dataSource="searchContent">
         <a-list-item slot="renderItem" slot-scope="item, index">
           <div style="margin-left:1%;margin-top:0.7%;">
             <a-icon type="scissor" />
           </div>
-          <div class="list-item">
-            <a-list-item-meta :description="item.description">
+          <div class="list-item" >
+            <a-list-item-meta :description="item.description" >
               <a slot="title">{{item.title}}</a>
             </a-list-item-meta>
           </div>
@@ -65,15 +65,18 @@
       :infinite-scroll-disabled="busy"
       :infinite-scroll-distance="15"
       style="overflow: auto;
-        padding: 8px 24px;
-        height: 500px;
-        width: 50%;
+        height: 350px;
+        width: 47%;
+       border-radius:5px;
+       float:right;
+        margin:0 2% 0 1%;
+      background: rgba(255,255, 255,0.5);
        "
     >
       <!-- <br />
       <br />-->
       <!-- <a-textarea v-model="description"  :rows="14" /> -->
-      <!-- <quill-editor
+      <quill-editor
         class="editor"
         v-model="description"
         ref="myQuillEditor"
@@ -81,110 +84,34 @@
         @blur="onEditorBlur($event)"
         @focus="onEditorFocus($event)"
         @change="onEditorChange($event)"
-        style="width: 100%; height: 250px "
+        style="width: 100%; height: 255px ;"
         :rows="14"
-      ></quill-editor>-->
-      <div id="vue-wangeditor" ref="editor"></div>
-      
+      ></quill-editor>
 
-      <br />
-      <br />
-      <a-button size="large" @click="doCopyCart">
-        <a-icon type="copy" />复制
+    
+
+    <p></p>
+  
+      <a-button size="large" @click="doCopyCart" >
+        <a-icon  type="copy" />复制
       </a-button>
     </div>
   </div>
 </template>
 
-<script type="text/javascript">
-import WangEditor from "wangeditor";
-// default WangEditor menu config
-const DEFAULT_MENUS = [
-  "head",
-  "bold",
-  "italic",
-  "underline",
-  "strikeThrough",
-  "foreColor",
-  "backColor",
-  "link",
-  "list",
-  "justify",
-  "quote",
-  "emoticon",
-  "image",
-  "table",
-  "video",
-  "code",
-  "undo",
-  "redo"
-];
-export default {
-  name: "VueWangEditor",
-  // @props {string} content html string
-  // @props {object} menus
-  props: ["value", "menus"],
-  data() {
-    return {
-      // instance of wangEditor
-      instance: null
-    };
-  },
-  methods: {
-    // init dom and WangEditor instance
-    init() {
-      this.$set(this, "instance", new WangEditor(this.$refs.editor));
-      this.instance.customConfig.menus = this.weMenus;
-      this.instance.customConfig.onchange = html => {
-        this.$nextTick(_ => {
-          this.$emit("input", html);
-        });
-      };
-      this.instance.create();
-      this.instance.txt.html(this.value);
-    }
-  },
-  watch: {
-    value(nv, ov) {
-      if (!this.instance) {
-        return;
-      }
-      let currentHTML = this.instance.txt.html();
-      if (currentHTML !== nv) {
-        this.instance.txt.html(nv);
-      }
-    }
-  },
-  computed: {
-    weMenus() {
-      if (this.menus && this.menus instanceof Array && this.menus.length) {
-        return this.menus;
-      } else {
-        return DEFAULT_MENUS;
-      }
-    }
-  },
-  watch: {
-    value() {
-      this.instance.txt.html(this.value);
-    }
-  },
-  mounted() {
-    this.init();
-  }
-};
-</script>
 
 <script>
 /* eslint-disable */
 const API = "http://deecamp.tangkailh.cn:10081/";
 import { quillEditor } from "vue-quill-editor";
 
+
 export default {
   name: "Advancemode",
 
   components: {
-    quillEditor
+    quillEditor,
+   
   },
   data() {
     return {
@@ -312,11 +239,11 @@ export default {
   margin-left: 5%;
 }
 .demo-infinite-container {
-  border: 1px solid #e8e8e8;
-  border-radius: 4px;
+  border: 1px solid #fdfafa;
+  border-radius: 5px;
   overflow: auto;
   padding: 8px 24px;
-  height: 500px;
+  background: rgba(255,255, 255,0.5);
 }
 .demo-loading-container {
   position: absolute;

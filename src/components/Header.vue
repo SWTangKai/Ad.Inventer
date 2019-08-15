@@ -1,14 +1,17 @@
 <template>
   <div class="header" style="margin-bottom:0;">
     <div style="width:100%;height:100%;">
-      <div class="header-word">
-        <img src="../assets/logowhite.png" style="width:7%;height:7%;float:left;margin-right:-40%;margin-left:35%;margin-top:-1%;" />
-        <p style="margin-top:3%;margin-bottom:0;margin-left:11%;">Ai文案</p>
+      <div class="header-word" style="">
+        <img
+          src="../assets/LOGO.jpg"
+          style="width:25%;height:25%;margin-top:1%;"
+        />
       </div>
-<div style="float:center;">
+
+      <div style="">
         <a-select
           :maxTagCount="6"
-          style="width:35%;"
+          style="width:35%;margin-left:2%;"
           mode="tags"
           class="customSelect"
           @change="handleChange"
@@ -20,16 +23,20 @@
           @click="handleGen"
           slot="suffix"
           class="search-btn"
-          style="background:transparent;margin-left:-3.2%;border:none;"
+          style="background:transparent;margin-left:-3.5%;border:none;"
         >
-          <a-icon type="smile" spin style="color:black;" />
+          <a-icon type="smile" spin style="color:white;" />
         </a-button>
       </div>
 
-      <div class="header-item" style="width:55%;margin-left:23.2%; ">
+      <div class="header-item" style="width:45%;margin-left:29.3%;margin-top:-2%;">
         <div class="aspect" style="width:50%;float:left;">
           <a-radio-group v-model="aspect">
-            <a-radio-button class="btn" value="a">外观</a-radio-button>
+            <a-radio-button
+              class="btn"
+              value="a"
+              style="border-top-left-radius:30px;border-bottom-left-radius:30px;"
+            >外观</a-radio-button>
             <a-radio-button class="btn" value="b">材质</a-radio-button>
             <a-radio-button class="btn" value="c">功能</a-radio-button>
           </a-radio-group>
@@ -39,7 +46,11 @@
           <a-radio-group v-model="length">
             <a-radio-button class="btn" value="a">短</a-radio-button>
             <a-radio-button class="btn" value="b">中</a-radio-button>
-            <a-radio-button class="btn" value="c">长</a-radio-button>
+            <a-radio-button
+              class="btn"
+              value="c"
+              style="border-top-right-radius:30px;border-bottom-right-radius:30px;"
+            >长</a-radio-button>
           </a-radio-group>
         </div>
       </div>
@@ -103,9 +114,7 @@ export default {
   height: 100%;
   width: 100%;
 }
-.customSelect {
-  width: 70%;
-}
+/*  */
 
 .header-word {
   width: 100%;
@@ -113,9 +122,12 @@ export default {
 
   text-align: center;
   font-size: 600%;
-  font:bold;
+  font: bold;
 }
-
+.btn {
+  background: rgba(255, 255, 255, 0);
+  color: white;
+}
 ul {
   list-style-type: none;
   padding: 0;
@@ -126,5 +138,34 @@ li {
 }
 a {
   color: #42b983;
+}
+</style>
+<style lang="less">
+.customSelect {
+  :global {
+    .ant-select-selection {
+      border-radius: 30px;
+      border: whites;
+      background: transparent;
+      li {
+        font-size: 18px;
+      }
+      .ant-select-selection__choice {
+        background: rgba(255, 255, 255, 0.3);
+        color: white;
+        border-radius: 30px;
+        font-size: 15px;
+      }
+    }
+  }
+}
+.btn {
+  :gloabal {
+    .ant-ratio-button-wrapper {
+      .ant-ratio-button-wrapper-checked {
+        color: black;
+      }
+    }
+  }
 }
 </style>
