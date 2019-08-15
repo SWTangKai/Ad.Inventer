@@ -103,5 +103,17 @@ a {
 }
 .res-card {
   /* width: 100%; */
+}</style>
+<style lang="en">
+.customSelect {
+  
+  :global {
+    .ant-select-selection {
+      border-radius: 30px;
+      li{
+        font-size:18px;
+      }
+    }
+  }
 }
 </style>
