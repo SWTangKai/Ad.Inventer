@@ -1,16 +1,14 @@
 <template>
-  <div class="header">
+  <div class="header" style="margin-bottom:0;">
     <div style="width:100%;height:100%;">
       <div class="header-word">
-        <img src="../assets/logowhite.png" style="width:7%;height:7%;float:left;margin-left:35%;margin-top:-1%;" />
-        <p style="margin-top:3%;margin-bottom:3%;margin-right:25%;">Ai文案</p>
+        <img src="../assets/logowhite.png" style="width:7%;height:7%;float:left;margin-right:-40%;margin-left:35%;margin-top:-1%;" />
+        <p style="margin-top:3%;margin-bottom:0;margin-left:11%;">Ai文案</p>
       </div>
-
-      <div class="header-search" style="padding-top:2%;width:100%;">
-        <!-- <a-select mode="tags" style="width: 80%;" @change="handleChange" placeholder="请输入关键词"> -->
+<div style="float:center;">
         <a-select
           :maxTagCount="6"
-          style="width:40%;"
+          style="width:35%;"
           mode="tags"
           class="customSelect"
           @change="handleChange"
@@ -114,7 +112,7 @@ export default {
   color: white;
 
   text-align: center;
-  font-size: 700%;
+  font-size: 600%;
   font:bold;
 }
 

@@ -50,7 +50,7 @@ export default {
   /* background-image:url('./assets/pic.jpg');
   background-repeat: repeat-y; */
   /* background:rgb(50, 190, 37); */
-  height:50%;
+  height:30%;
   background:transparent;
 }
 </style>
