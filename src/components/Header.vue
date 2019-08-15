@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    <div style="width:100%;height:100%;padding-top:8%;">
+    <div style="width:100%;height:100%;">
       <div class="header-word">
         <img src="../assets/logowhite.png" style="width:7%;height:7%;float:left;margin-left:35%;margin-top:-1%;" />
         <p style="margin-top:3%;margin-bottom:3%;margin-right:25%;">Ai文案</p>

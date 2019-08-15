@@ -39,18 +39,18 @@ export default {
 
 #components-layout-demo-top{
   
-  /* background-image:url('./assets/pic.jpg');
-  background-repeat: repeat-y; */
+  background-image:url('./assets/pic.jpg');
+  background-repeat: repeat-y;
   height: 100%;
   background-color: #fafafa00 
   /* background:rgb(206, 214, 224); */
 }
 
 .layout-header{
-  background-image:url('./assets/pic.jpg');
-  background-repeat: repeat-y;
+  /* background-image:url('./assets/pic.jpg');
+  background-repeat: repeat-y; */
   /* background:rgb(50, 190, 37); */
-  height:70%;
-  /*background:transparent; */
+  height:50%;
+  background:transparent;
 }
 </style>
