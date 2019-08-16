@@ -2,7 +2,7 @@
   <div class="modetwo">
     <div class="demo-infinite-container">
       <a-list :dataSource="searchContent">
-        <a-list-item slot="renderItem" slot-scope="item, index" style="border: white">
+        <a-list-item slot="renderItem" slot-scope="item, index" style="border: white;">
           <div class="list-item">
             <!-- <a-list-item-meta :description="item.description"></a-list-item-meta> -->
             <div class="list-item-desc">{{item.description}}</div>
@@ -41,8 +41,8 @@
     >
       <div class="drawer-container">
         <a-list :dataSource="shopingCart">
-          <a-list-item slot="renderItem" slot-scope="item" style="border: white">
-            <div class="list-item" style="width: 100%; border-bottom:white">
+          <a-list-item slot="renderItem" slot-scope="item" style="border: white; padding 0 0 0">
+            <div class="list-item" style="width: 100%;">
               {{ item.description }}
               <!-- <a-list-item-meta :description="item.description"></a-list-item-meta> -->
               <div style="float: right">
@@ -72,7 +72,10 @@
           textAlign: 'right',
         }"
       >
-        <a-button :style="{marginRight: '8px'}" @click="handleRoute">编辑 ({{ totalSelectItem }})</a-button>
+        <a-button :style="{marginRight: '8px'}" @click="handleRoute">
+          <a-icon type="edit" />
+          编辑 ({{ totalSelectItem }})
+        </a-button>
         <a-button @click="openNotification" type="primary">清空</a-button>
       </div>
     </a-drawer>
@@ -88,7 +91,10 @@
           >选择（{{ totalSelectItem}}）</a-button>
         </a-col>
         <a-col :span="16">
-          <a-button class="comfer-btn" size="large" type="primary" @click="handleRoute">编辑</a-button>
+          <a-button class="comfer-btn" size="large" type="primary" @click="handleRoute">
+            <a-icon type="edit" />
+            编辑
+          </a-button>
         </a-col>
       </a-row>
       <!-- </a-button-group> -->
@@ -275,6 +281,7 @@ export default {
     border-radius: 20px 20px 0 0;
     .ant-drawer-header {
       border-radius: 20px 20px 0 0;
+      text-align: center;
     }
     .ant-drawer-body {
       height: 350px;
@@ -298,7 +305,7 @@ export default {
     border-radius: 10px;
     text-align: left;
     // width: 90%;
-    padding: 5% 0 5% 5%;
+    padding: 4% 0 4% 5%;
     // box-shadow: 2px 2px 3px #ff5b4040;
     .list-item-desc {
       float: left;

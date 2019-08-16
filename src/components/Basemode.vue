@@ -21,26 +21,6 @@
         </div>
       </div>
       <a-spin style="height: 100%" :spinning="spinning" :delay="delayTime">
-        <!-- <swiper :options="swiperOption" ref="mySwiper">
-          <swiper-slide v-for="(item) in gencontent" v-bind:key="item">
-            <a-card
-              :loading="loading"
-              :bordered="false"
-              class="res-card"
-              bodyStyle="height:100%; padding:0; width: 100%"
-            >
-              <div class="card-text-content">
-                <p>{{ item }}</p>
-              </div>
-              <div class="card-rate" @click="handleRateClick">
-                <a-rate style="float: right" :defaultValue="0" />
-              </div>
-              <div class="rate-icon">
-                <img src="../assets/rate-btn.png" alt />
-              </div>
-            </a-card>
-          </swiper-slide>
-        </swiper>-->
         <a-card
           :loading="loading"
           :bordered="false"
@@ -48,10 +28,10 @@
           bodyStyle="height:100%; padding:20px 0px 0 0px; width: 100%"
         >
           <div class="card-text-content">
-            <p>{{now_text}}</p>
+            <p style="text-align: left">{{now_text}}</p>
           </div>
           <div class="card-rate" @click="handleRateClick">
-            <a-rate style="float: right" :defaultValue="0" />
+            <a-rate style="margin: 4% 13% 0 41%; font-size: 25px" :defaultValue="0" />
           </div>
           <div class="rate-icon">
             <img src="../assets/rate-btn.png" alt />
@@ -165,19 +145,19 @@ export default {
 </script>
 <style lang="less">
 .control-res {
-  margin: 0 0 20px 0;
+  margin: 0 0 10px 0;
   overflow: hidden;
-  height: 50%;
+  height: 60%;
   .res-card {
-    border: #ff5b40 solid 2px;
+    border: #ff5b40 solid 1.5px;
     border-radius: 5%;
     width: 90%;
     height: 400px;
     margin: 5% 0 0 0;
     display: inline-block;
     .card-text-content {
-      height: 90%;
-      padding: 10%;
+      height: 80%;
+      padding: 5%;
       p {
         line-height: 180%;
         font-size: 110%;
@@ -187,24 +167,27 @@ export default {
       border-top: 3px;
       border-top-color: #ff5b40;
       border-top-style: solid;
-      border-top-width: 2px;
-      padding-right: 10%;
+      border-top-width: 1.5px;
+      padding-right: 0;
+      width: 100%;
+  
       height: 10%;
     }
 
     .rate-icon {
       transform: translateY(-120%);
       width: 20%;
-      margin: 0 10%;
+      margin: 4% 0 0 10%;
       img {
         width: 100%;
       }
     }
   }
   .mode1-edit-btn {
-    margin-top: 3%;
+    margin-top: 2%;
     border-radius: 15px;
-    width: 80%;
+    width: 90%;
+    height: 55px;
   }
 }
 </style>

@@ -1,22 +1,31 @@
 <template>
   <div class="edit-area">
     <div class="edit-header">
-      <img src="../assets/logo-word.png" alt="">
+      <!-- <img src="../assets/logo-word.png" alt=""> -->
     </div>
     <div class="edit-content">
       <div class="edit-card">
         <a-textarea class="edit-editarea" v-model="description" :rows="14" />
         <div class="edit-btns">
           <div class="edit-btns-group">
-            <a-button size="large" @click="handleBack">首页</a-button>
-            <a-button size="large" @click="doCopy">复制</a-button>
-            <a-button size="large" @click="genPicture">分享</a-button>
+            <a-button size="large" @click="handleBack">
+              <a-icon type="home" />  
+              首页
+            </a-button>
+            <a-button size="large" style="color: #ffffff; background: #ff5b40" @click="doCopy">
+              <a-icon type="copy" />
+              复制
+            </a-button>
+            <a-button size="large" @click="genPicture">
+              <a-icon type="share-alt" />
+              分享
+            </a-button>
           </div>
         </div>
       </div>
     </div>
 
-    <div>
+    <!-- <div>
       <div ref="capture">
         <a-card
           hoverable
@@ -30,11 +39,11 @@
           <a-card-meta
             title="Card title"
             description="This is the description">
-            <!-- <a-avatar slot="avatar" src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" /> -->
+            <a-avatar slot="avatar" src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
           </a-card-meta>
         </a-card>
-      </div>
-      <a-button type="primary" @click="showModal">Open Modal with async logic</a-button>
+      </div> -->
+      <!-- <a-button type="primary" @click="showModal">Open Modal with async logic</a-button> -->
       <a-modal
         title=""
         :footer="null"
@@ -48,7 +57,6 @@
       </a-modal>
       <img :src="imgUri" />
       <!-- <div ref="shareImg"></div> -->
-    </div>
   </div>
 </template>
 
@@ -108,6 +116,8 @@ export default {
 </script>
 <style lang="less" scoped>
 .edit-area {
+  background-image: url(../assets/editpage.png);
+  background-size: 100%;
   height: 100%;
   .edit-header {
     height: 20%;
@@ -121,19 +131,22 @@ export default {
   .edit-content {
     margin: auto;
     .edit-card {
-      border: #ff5b40 solid 2px;
+      border: #ff5b40 solid 1.5px;
       width: 90%;
       margin: auto;
       border-radius: 10px;
-      padding: 10% 0 0 0;
+      padding: 0 0 0 0;
+      background: #ffffff;
       .edit-editarea {
+        border: transparent;
         width: 85%;
-        margin-bottom: 5%;
+        margin: 5px 5px 5px 5px;
+        // background: transparent;
       }
       .edit-btns {
         width: 100%;
         height: 20%;
-        border-top: #ff5b40 solid 2px;
+        border-top: #ff5b40 solid 1.5px;
         margin-top: 10px;
         .edit-btns-group{
           margin: auto;
@@ -143,7 +156,8 @@ export default {
           width: 30%;
           margin: 20px 5px;
           border-radius: 10px;
-          border: #ff5b40 solid 2px;
+          border: #ff5b40 solid 1.5px;
+          color:#ff5b40;
         }
       }
     }

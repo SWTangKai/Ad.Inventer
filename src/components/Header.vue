@@ -2,8 +2,7 @@
   <div class="header" >
 
     <div class="header-item">
-      
-      <img src="../assets/logo-bold.png" style="height: 70%; margin: auto"/>
+      <img src="../assets/logo-bold.png" style="height: 50%; margin: 50% 0 0 0"/>
     </div>
   </div>
 </template>

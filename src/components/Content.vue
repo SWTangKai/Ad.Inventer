@@ -26,10 +26,10 @@
     </div>
     <div class="main-content">
       <a-tabs defaultActiveKey="1" @change="callback" class="customTab">
-        <a-tab-pane tab="文不加点" key="1">
+        <a-tab-pane tab="寻章" key="1" style="font-size: 16px">
           <modeone ref="modeone" />
         </a-tab-pane>
-        <a-tab-pane tab="寻章摘句" key="2" forceRender>
+        <a-tab-pane tab="摘句" key="2" forceRender>
           <modetwo ref="modetwo" />
         </a-tab-pane>
       </a-tabs>
